@@ -1,10 +1,8 @@
-# English Mastery Lab — C2 direction + TOEIC 990 benchmark
+# English Mastery Lab — Complete English + TOEIC 990 benchmark
 
-日本語・繁體中文で、英語を基礎から**実際に使いこなせるレベル**まで体系的に学ぶためのWeb教材です。
+英語を「試験で点を取る知識」ではなく、**聞く・読む・話す・書くための運用能力**として身につけるための、JP / 繁中バイリンガル学習アプリです。
 
-TOEIC専用教材ではありません。TOEIC L&R 990点を「高い精度と処理速度」のベンチマークとして使いつつ、試験だけでは十分に測れない **Speaking / Writing / Pronunciation / Pragmatics / Register** まで含めて伸ばします。
-
-> **Grammar first, but mastery requires input, output, automaticity, and natural usage.**
+TOEIC L&R 990 は重要なベンチマークの一つですが、最終目的ではありません。A1 から C2 方向まで、Grammar / Vocabulary / Pronunciation / Listening / Reading / Speaking / Writing / Pragmatics を統合して伸ばします。
 
 ## Site
 
@@ -14,153 +12,131 @@ GitHub Pages:
 https://syun88.github.io/learn_english/
 ```
 
-Pagesが未設定の場合:
-
-- Source: `Deploy from a branch`
-- Branch: `main`
-- Folder: `/root`
-
-## Goal
-
-学習目標は「難しい英単語を知っていること」ではなく、次の3つを同時に高めることです。
+## Learning philosophy
 
 ```text
 Accuracy × Automaticity × Appropriacy = Mastery
-正確さ × 自動化 × 場面に合う自然さ
 ```
 
-CEFR A1〜C2を能力整理の方向性として使いますが、このサイトだけでCEFRレベルを公式認定するものではありません。
-
-## 8 mastery domains
-
-1. **Grammar & Syntax** — 語順から情報構造・精密文法まで
-2. **Vocabulary & Collocation** — word family / collocation / chunks / register
-3. **Pronunciation & Phonology** — stress / schwa / weak forms / linking / rhythm / intonation
-4. **Listening** — 音認識 → chunk処理 → 意図・推論
-5. **Reading** — 構文 → cohesion → logic → inference → speed
-6. **Speaking** — accuracy / fluency / interaction / paraphrase
-7. **Writing** — sentence → paragraph → email → explanation → technical/academic writing
-8. **Pragmatics & Register** — 丁寧さ、距離感、hedging、formal/neutral/casual
-
-## 12-unit curriculum
-
-- Unit 1: Sentence Architecture
-- Unit 2: be / do / have
-- Unit 3: Verb Forms
-- Unit 4: Questions & Negation
-- Unit 5: Tense & Aspect
-- Unit 6: Expand
-- Unit 7: Clauses
-- Unit 8: Real English
-- Unit 9: Precision Grammar
-- Unit 10: Vocabulary System
-- Unit 11: Sound & Fluency
-- Unit 12: C2 Direction + TOEIC 990
-
-進捗はブラウザの `localStorage` に保存します。
-
-## Professor-style Grammar
-
-文法は短いルール表ではなく、各Lessonを次の順番で学びます。
+文法は次の順番で学びます。
 
 ```text
-Form
-  ↓
-Meaning
-  ↓
-Usage
-  ↓
-Contrast
-  ↓
-Common mistakes
-  ↓
-Real examples
-  ↓
-Output
+Quick Check
+→ Form
+→ Meaning / Teacher explanation
+→ Usage
+→ Contrast & common mistakes
+→ Real examples + audio
+→ Output assignment
+→ Review
 ```
 
-現在の詳細Lessonは以下を含みます。
+「ルールを読んで終わり」ではなく、理解した文法を自分で使うところまでを1 Lessonとします。
 
-- Sentence architecture / verb valency / 5文型
-- be / do / have
-- Nouns / countability / articles / determiners
-- Tense
-- Aspect: progressive / perfect / perfect progressive
-- Modality
-- Infinitives / gerunds / participles
-- Passive / causative
-- Questions / negation / inversion
-- Relative clauses
-- Conditionals / subjunctive
-- Prepositions / collocations
-- Agreement / pronoun reference
-- Information structure / cleft / fronting
-- Cohesion / discourse
-- Register / hedging / naturalness
-- C1/C2 precision: ellipsis / apposition / nominalization / parallelism
+## UI / learning flow
 
-各Lessonには日本語・繁體中文の講義、使い分け、対比例、典型ミス、音声再生可能な例文、Output課題があります。検索とCEFRレベル絞り込みにも対応しています。
+従来の長い参考書型1ページではなく、学習アプリ型に再設計しています。
 
-## Practice
+- Home: 今日の次 Lesson、Grammar進捗、Study days、Quiz best
+- Path: A1 → A2 → B1 → B2 → C1 → C2 direction
+- Grammar: 検索・CEFRレベル・文法領域で絞り込み
+- Lesson Reader: 一度に1 Lessonへ集中
+- Coverage: 文法領域と主要トピックの抜けを確認
+- Skills: Grammar以外の7領域も独立して学習
+- Practice: Quiz / Transform / Dictation / Output
+- TOEIC: Part 1–7を精度と速度のベンチマークとして練習
+- Review: 1 / 3 / 7 / 30日復習 + Mistake notebook
 
-自動採点Quizは10問ランダムで、次のモードを用意しています。
+進捗、学習日、Quiz best、ノート、Writing draft はブラウザの `localStorage` に保存します。
 
-- **Mixed** — 全レベル混合
-- **Foundation** — A1〜B1の基礎
-- **Advanced B2–C2** — 精密文法・自然さ・論理
-- **TOEIC 990** — Part 5型の品詞・語法・コロケーション・構文
+## Grammar coverage
 
-さらに:
+現在の Professor Grammar は **35 detailed lessons / 9 grammar domains / 90 major topic labels** で構成しています。
 
-- Sentence transformation
-- Dictation（Normal / Slow）
-- Shadowing protocol
-- Speaking 30秒 / 90秒 / 2分
-- 200-word Writing
-- Core sentence bank 30文
-- Mistake Notebook
-- Today / Tomorrow / +3 days / +7 days review
+### 9 domains
 
-を用意しています。
+1. Sentence & Clause Architecture
+2. Noun Phrase System
+3. Tense, Aspect & Modality
+4. Verb Patterns & Voice
+5. Modification & Comparison
+6. Complex Clauses
+7. Interaction Grammar
+8. Discourse & Information
+9. Advanced Written Precision
+
+### Topics added after the coverage audit
+
+初期版の17 Lessonだけでは、英語文法全体の中核を学ぶには不足していました。現在は特に次を独立して追加しています。
+
+- Pronouns & Possession
+- Quantifiers
+- There / It constructions
+- Adjectives & Adverbs
+- Comparison & Degree
+- Future forms
+- `used to / would / be used to / get used to`
+- Modal perfects
+- Phrasal & multi-word verbs
+- Verb complementation
+- Noun / content clauses
+- Adverbial clauses & linkers
+- Reported speech
+- Reporting verbs
+- Question tags / short answers / response grammar
+- Participle / reduced clauses
+- Ellipsis & substitution
+- Punctuation / capitalisation / written grammar
+
+35 Lessonですべての英文法事項を「完全列挙した」とは主張しません。Cambridge English Grammar Profileのような参照体系は非常に細かい文法特徴をCEFR別に記述しています。このサイトでは、それらを1項目1ページで複製するのではなく、**学習・運用上まとまりの良いLessonに統合し、必要に応じてsub-lessonや問題を追加する設計**にしています。
+
+## Complete English domains
+
+- Grammar & Syntax
+- Vocabulary & Collocation
+- Pronunciation & Phonology
+- Listening
+- Reading
+- Speaking
+- Writing
+- Pragmatics & Register
+
+TOEICで扱われにくいSpeaking / Writing / Pronunciation / Registerも同じ重要度で扱います。
 
 ## TOEIC 990 benchmark
 
-TOEIC L&Rは現在、Listening 100問 + Reading 100問の計200問、合計10〜990点です。
+TOEIC L&RはPart 1–7を練習します。ただし、テスト固有のテクニックを学習の中心には置きません。
 
-教材内ではPart 1〜7それぞれの処理方法を扱いますが、TOEIC固有のテクニックだけを英語学習の中心には置きません。
+まず一般英語として、
 
-- Part 1: Photographs
-- Part 2: Question–Response
-- Part 3: Conversations
-- Part 4: Talks
-- Part 5: Incomplete Sentences
-- Part 6: Text Completion
-- Part 7: Reading Comprehension
+- 語彙・collocation
+- 文法・語法
+- connected speech の聞き取り
+- 文章構造・言い換え・推論
+- 高速で正確に処理する自動化
 
-公式形式の確認先:
-
-- IIBC: `https://www.iibc-global.org/toeic/test/lr/about/format.html`
-- ETS: `https://www.ets.org/toeic/about/faq/product-specific-faq/toeic-listening-reading.html`
-
-受験前には必ず最新の公式情報を確認してください。
+を作り、その結果として990を狙います。
 
 ## Files
 
 ```text
-index.html        # mastery curriculum / UI shell
-mastery-data.js  # professor grammar / mastery domains / TOEIC / C2 data
-mastery-app.js   # rendering / quiz / progress / TTS / dictation / review
-mastery.css      # responsive UI / dark mode / lesson design
-.nojekyll         # GitHub Pages helper
-
-script.js         # previous interactive version (legacy)
-styles.css        # previous interactive version (legacy)
+index.html        # app shell / page structure
+mastery.css       # responsive application UI
+mastery-data.js   # grammar curriculum and coverage data
+mastery-app.js    # lesson reader, progress, practice and audio logic
+README.md
 ```
 
-教材本文を増やす場合は主に `mastery-data.js`、新しい練習機能を増やす場合は `mastery-app.js` を編集します。内容とUIを分離しているため、今後Grammar Lesson、語彙、長文、発音教材を数百単位に拡張できます。
+旧 `styles.css` / `script.js` はmainの旧版互換用として残していますが、Mastery版のページからは読み込みません。
 
-## Browser notes
+## Curriculum references
 
-音声機能はブラウザ標準の `SpeechSynthesis` を使用します。利用できる英語音声や品質はOS・ブラウザによって異なります。
+設計時の参照軸：
 
-進捗、学習日、クイズベストスコア、間違いノートは `localStorage` に保存され、サーバーには送信しません。
+- CEFR / Council of Europe
+- Cambridge English Grammar Profile
+- Cambridge Grammar Today
+- British Council LearnEnglish Grammar
+- ETS / IIBC TOEIC official information
+
+CEFRレベル表示は学習方向を整理するための目安であり、このサイト単独で公式なCEFR認定を行うものではありません。
