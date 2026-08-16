@@ -3,319 +3,184 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>English Grammar & Verb Master | JP / 繁中</title>
-  <meta name="description" content="英語をゼロから学び直すための日本語・繁體中文バイリンガル文法サイト。動詞変化、時制、疑問文、助動詞、受動態、関係詞、仮定法まで。" />
-  <link rel="stylesheet" href="styles.css" />
+  <title>English Mastery Lab | C2 Direction + TOEIC 990 | JP / 繁中</title>
+  <meta name="description" content="日本語・繁體中文で英語を基礎から高度な運用力まで学ぶ実践教材。文法・語法・語彙・発音・Listening・Reading・Speaking・Writingを統合し、TOEIC 990もベンチマークとして目指します。" />
+  <link rel="stylesheet" href="mastery.css" />
 </head>
 <body>
-  <header class="hero">
-    <nav class="topbar" aria-label="Main navigation">
-      <a class="brand" href="#top">English Master 2026</a>
-      <div class="navlinks">
-        <a href="#roadmap">Roadmap</a>
-        <a href="#grammar-map">Grammar</a>
-        <a href="#verb-system">Verbs</a>
-        <a href="#tenses">Tenses</a>
-        <a href="#examples">Examples</a>
+  <nav class="topbar" aria-label="Main navigation">
+    <a class="brand" href="#top">English Mastery Lab</a>
+    <div class="nav">
+      <a href="#course">Course</a><a href="#mastery">Mastery</a><a href="#grammar">Grammar</a>
+      <a href="#practice">Practice</a><a href="#toeic">TOEIC</a><a href="#review">Review</a>
+    </div>
+    <div class="toolbar">
+      <div class="lang-switch">
+        <button class="lang-button active" data-lang="both" type="button">JP+繁中</button>
+        <button class="lang-button" data-lang="jp" type="button">JP</button>
+        <button class="lang-button" data-lang="tc" type="button">繁中</button>
       </div>
       <button id="themeToggle" class="ghost" type="button">Dark</button>
-    </nav>
+    </div>
+  </nav>
 
-    <section id="top" class="hero-inner">
+  <header class="hero" id="top">
+    <div class="container hero-grid">
       <div>
-        <p class="eyebrow">日本語で英語を学び直す / 用日文重新學英文</p>
-        <h1>英語文法と動詞変化を、ゼロから一気に見直すサイト</h1>
-        <p class="lead jp">単語帳ではなく、まず「英語の形」を作るための基礎文法サイトです。日本語の五十音後に基礎文法へ進む感覚で、英語の文型・be/do/have・時制・疑問文・助動詞・不定詞・関係詞・仮定法まで整理します。</p>
-        <p class="lead tc">這不是單字書，而是先建立「英文句子骨架」的基礎文法網站。像學日文五十音之後進入基礎文法一樣，從句型、be/do/have、時態、疑問句、助動詞、不定詞、關係詞到假設語氣重新整理。</p>
-        <div class="cta-row">
-          <a class="button" href="#roadmap">今年中のロードマップを見る</a>
-          <a class="button secondary" href="#tenses">時制から見る</a>
-        </div>
+        <p class="eyebrow">A1 → C2 direction · TOEIC 990 is a benchmark, not the destination</p>
+        <h1>TOEIC満点の先まで。<br>英語そのものを使いこなす。</h1>
+        <p class="lead jp">TOEIC 990を狙える精度と処理速度を育てながら、試験だけでは十分に測れないSpeaking・Writing・発音・語用論まで鍛えます。文法は「ルール → なぜ → ニュアンス → 使い分け → よくある誤り → 実例 → Output」の順で、先生の授業のように学びます。</p>
+        <p class="lead tc">以 TOEIC 990 所需的精準度與速度為其中一個里程碑，但不把考試當終點。也訓練口說、寫作、發音與語用；文法依「規則 → 為什麼 → 語感 → 用法差異 → 常見錯誤 → 真實例句 → 輸出」完整學習。</p>
+        <div class="cta-row"><a class="primary" href="#grammar">Professor Grammarを始める</a><a class="secondary" href="#practice">今日の練習へ</a></div>
       </div>
-      <aside class="hero-card">
-        <h2>学習方針 / 學習方針</h2>
-        <ul>
-          <li><strong>単語より文法。</strong> 文の作り方を先に覚える。</li>
-          <li><strong>暗記より型。</strong> 肯定・否定・疑問の変換を見る。</li>
-          <li><strong>例文中心。</strong> 練習問題より使い方を増やす。</li>
-          <li><strong>日文＋繁中。</strong> 感覚のズレを二言語で補正する。</li>
-        </ul>
+      <aside class="dashboard">
+        <p class="eyebrow">Your Progress</p>
+        <div class="target-badges"><span>C2 direction</span><span>TOEIC 990 benchmark</span></div>
+        <div class="progress-number"><span id="progressPercent">0</span>%</div>
+        <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+        <div class="stats">
+          <div><strong id="completedCount">0</strong><span>Lessons</span></div>
+          <div><strong id="studyDayCount">0</strong><span>Study days</span></div>
+          <div><strong id="bestQuizScore">0</strong><span>Quiz best</span></div>
+        </div>
+        <button id="markToday" class="primary" type="button">今日の学習を記録</button>
+        <p id="todayStatus" class="micro">ブラウザ内に保存します。</p>
       </aside>
-    </section>
+    </div>
   </header>
 
   <main>
-    <section id="roadmap" class="section">
-      <div class="section-title">
-        <p class="eyebrow">Roadmap</p>
-        <h2>2026年内に英語を形にするロードマップ</h2>
-        <p class="tc">2026 年內把英文打成基礎能力的學習路線。</p>
-      </div>
-      <div class="timeline">
-        <article>
-          <span>Phase 1</span>
-          <h3>文の骨格</h3>
-          <p class="jp">SVO、be動詞、一般動詞、否定文、疑問文。</p>
-          <p class="tc">主詞、動詞、受詞、be 動詞、一般動詞、否定句、疑問句。</p>
-        </article>
-        <article>
-          <span>Phase 2</span>
-          <h3>動詞変化</h3>
-          <p class="jp">原形・三単現・過去形・過去分詞・ing形。</p>
-          <p class="tc">原形、第三人稱單數、過去式、過去分詞、ing 形。</p>
-        </article>
-        <article>
-          <span>Phase 3</span>
-          <h3>時制</h3>
-          <p class="jp">現在・過去・未来、進行形、完了形、完了進行形。</p>
-          <p class="tc">現在、過去、未來、進行式、完成式、完成進行式。</p>
-        </article>
-        <article>
-          <span>Phase 4</span>
-          <h3>文を伸ばす</h3>
-          <p class="jp">助動詞、不定詞、動名詞、分詞、接続詞。</p>
-          <p class="tc">助動詞、不定詞、動名詞、分詞、連接詞。</p>
-        </article>
-        <article>
-          <span>Phase 5</span>
-          <h3>複文・高度文法</h3>
-          <p class="jp">関係詞、名詞節、受動態、比較、仮定法。</p>
-          <p class="tc">關係詞、名詞子句、被動態、比較、假設語氣。</p>
-        </article>
+    <section class="section" id="routine">
+      <div class="container">
+        <div class="section-head"><p class="eyebrow">Daily system</p><h2>毎日「理解した英語」を「使える英語」に変える</h2><p class="jp">最低25分。時間がある日は45〜60分。読むだけの日を作らず、必ず聞く・話す・書くのどれかまで進めます。</p><p class="tc">最低 25 分，有時間做 45–60 分鐘。不要只閱讀，每天至少做到聽、說、寫其中一項輸出。</p></div>
+        <div class="grid grid-4">
+          <article class="card"><strong class="kicker">01 · UNDERSTAND</strong><h3>Grammar 8–12 min</h3><p class="jp">講義を1Lesson。形ではなく「なぜ」を説明できるまで。</p><p class="tc">每天一課，目標不是背形式，而是能解釋「為什麼」。</p></article>
+          <article class="card"><strong class="kicker">02 · RECALL</strong><h3>Quiz 8–12 min</h3><p class="jp">Foundation / Advanced / TOEICから見ずに答える。</p><p class="tc">從 Foundation / Advanced / TOEIC 不看答案直接回想。</p></article>
+          <article class="card"><strong class="kicker">03 · SOUND</strong><h3>Listen + Speak 10 min</h3><p class="jp">ディクテーション→音読→シャドーイング。</p><p class="tc">聽寫 → 朗讀 → Shadowing。</p></article>
+          <article class="card"><strong class="kicker">04 · CREATE</strong><h3>Write / Speak 10 min</h3><p class="jp">今日の文法・語彙で自分の内容を作る。</p><p class="tc">用今天學的文法與詞彙表達自己的內容。</p></article>
+        </div>
       </div>
     </section>
 
-    <section id="grammar-map" class="section alt">
-      <div class="section-title">
-        <p class="eyebrow">Grammar Map</p>
-        <h2>英語文法の全体地図</h2>
-        <p class="tc">英文文法的整體地圖。</p>
-      </div>
-      <div class="grid cards">
-        <article class="card"><h3>1. 文型 / 句型</h3><p>SV, SVC, SVO, SVOO, SVOC。</p><p class="jp">英語は語順が意味を作る言語。まず主語と動詞の位置を固定する。</p><p class="tc">英文是靠語順建立意思的語言。先固定主詞和動詞的位置。</p></article>
-        <article class="card"><h3>2. 品詞 / 詞性</h3><p>Noun, Verb, Adjective, Adverb, Preposition, Conjunction。</p><p class="jp">品詞は「単語の意味」ではなく「文の中の役割」。</p><p class="tc">詞性不是只看單字意思，而是看它在句子中的功能。</p></article>
-        <article class="card"><h3>3. 動詞 / 動詞</h3><p>be, do, have, modal, lexical verbs。</p><p class="jp">英語の文法はほぼ動詞を中心に動く。</p><p class="tc">英文文法幾乎都圍繞動詞運作。</p></article>
-        <article class="card"><h3>4. 時制 / 時態</h3><p>Time + Aspect。</p><p class="jp">時制は「時間」だけでなく「見え方」。進行・完了が重要。</p><p class="tc">時態不只是時間，也包含動作的看法。進行與完成很重要。</p></article>
-        <article class="card"><h3>5. 節 / 子句</h3><p>Main clause, noun clause, relative clause, adverbial clause。</p><p class="jp">文の中にもう一つ文を入れる仕組み。</p><p class="tc">在一句話裡放入另一個句子的機制。</p></article>
-        <article class="card"><h3>6. 変形 / 變形</h3><p>Negative, Question, Passive, Conditional。</p><p class="jp">肯定文を土台にして、否定・疑問・受動・仮定へ変形する。</p><p class="tc">以肯定句為基礎，變形成否定、疑問、被動、假設。</p></article>
+    <section class="section alt" id="course">
+      <div class="container">
+        <div class="section-head"><p class="eyebrow">12-unit curriculum</p><h2>基礎 → 精密文法 → 自然な運用 → 990</h2><p class="jp">Unit 1〜8で土台、9〜11で上級運用、12でC2方向の統合力とTOEIC高得点処理を鍛えます。</p><p class="tc">Unit 1–8 打底，9–11 進入高階運用，12 整合 C2 方向能力與 TOEIC 高分所需速度。</p></div>
+        <div id="courseGrid" class="grid grid-3"></div>
       </div>
     </section>
 
-    <section id="sentence-patterns" class="section">
-      <div class="section-title">
-        <p class="eyebrow">Sentence Patterns</p>
-        <h2>文型：英語の骨格</h2>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>型</th><th>構造</th><th>意味</th><th>例</th><th>繁中</th></tr></thead>
-          <tbody>
-            <tr><td>SV</td><td>Subject + Verb</td><td>主語が動作する</td><td>I work. / Birds fly.</td><td>主詞做動作。</td></tr>
-            <tr><td>SVC</td><td>Subject + Verb + Complement</td><td>主語 = 補語</td><td>He is kind. / She became a doctor.</td><td>主詞 = 補語。</td></tr>
-            <tr><td>SVO</td><td>Subject + Verb + Object</td><td>主語が目的語に動作する</td><td>I study English. / She likes music.</td><td>主詞對受詞做動作。</td></tr>
-            <tr><td>SVOO</td><td>Subject + Verb + Object + Object</td><td>誰に何を</td><td>He gave me a book.</td><td>給某人某物。</td></tr>
-            <tr><td>SVOC</td><td>Subject + Verb + Object + Complement</td><td>目的語 = 補語の状態にする</td><td>They made me happy.</td><td>讓受詞變成某種狀態。</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="note"><strong>JP:</strong> 英語で一番大事なのは「主語を省略しない」「動詞を必ず置く」「語順を崩さない」こと。<br><strong>繁中:</strong> 英文最重要的是「不要省略主詞」、「一定要有動詞」、「不要亂換語順」。</div>
-    </section>
-
-    <section id="verb-system" class="section alt">
-      <div class="section-title">
-        <p class="eyebrow">Verb System</p>
-        <h2>動詞変化：英語文法の心臓</h2>
-        <p class="tc">動詞變化：英文文法的核心。</p>
-      </div>
-      <div class="verb-flow" aria-label="verb transformation flow">
-        <div>原形<br><small>base</small></div>
-        <div>三単現<br><small>-s / -es</small></div>
-        <div>過去形<br><small>past</small></div>
-        <div>過去分詞<br><small>p.p.</small></div>
-        <div>ing形<br><small>-ing</small></div>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>形</th><th>作り方</th><th>使う場所</th><th>例</th><th>繁中</th></tr></thead>
-          <tbody>
-            <tr><td>原形</td><td>そのまま</td><td>助動詞の後、命令文、to不定詞</td><td>can go / to study / Go!</td><td>原形用在助動詞後、不定詞、命令句。</td></tr>
-            <tr><td>三単現</td><td>he/she/it + 現在で -s</td><td>現在形で主語が三人称単数</td><td>He works. / She studies.</td><td>現在式第三人稱單數加 s。</td></tr>
-            <tr><td>過去形</td><td>regular: -ed / irregular</td><td>過去の出来事</td><td>I watched it. / He went home.</td><td>表示過去發生的事。</td></tr>
-            <tr><td>過去分詞</td><td>regular: -ed / irregular</td><td>完了形・受動態</td><td>have done / was built</td><td>用於完成式與被動態。</td></tr>
-            <tr><td>ing形</td><td>-ing</td><td>進行形・動名詞・分詞</td><td>is running / studying is fun</td><td>用於進行式、動名詞、分詞。</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="grid two">
-        <article class="card"><h3>Regular verbs</h3><p>work → works → worked → worked → working</p><p>study → studies → studied → studied → studying</p><p>stop → stops → stopped → stopped → stopping</p></article>
-        <article class="card"><h3>Irregular verbs</h3><p>go → goes → went → gone → going</p><p>see → sees → saw → seen → seeing</p><p>make → makes → made → made → making</p></article>
+    <section class="section" id="mastery">
+      <div class="container">
+        <div class="section-head"><p class="eyebrow">Complete English</p><h2>英語力を8領域に分解して、全部伸ばす</h2><p class="jp">TOEIC L&Rだけに最適化せず、理解・表現・音・自然さを統合します。</p><p class="tc">不只最佳化 TOEIC L&R，而是整合理解、表達、聲音與自然度。</p></div>
+        <div id="masteryGrid" class="grid grid-4"></div>
+        <div class="mastery-equation">Accuracy × Automaticity × Appropriacy = Mastery<br><small>正確さ × 自動化 × 場面に合う自然さ</small></div>
       </div>
     </section>
 
-    <section id="be-do-have" class="section">
-      <div class="section-title">
-        <p class="eyebrow">Core Auxiliaries</p>
-        <h2>be / do / have の役割</h2>
-      </div>
-      <div class="grid three">
-        <article class="card emphasis"><h3>be</h3><p class="jp">状態・存在・進行形・受動態を作る。</p><p class="tc">表示狀態、存在，也用於進行式與被動態。</p><ul><li>I am tired.</li><li>She is studying.</li><li>The door was opened.</li></ul></article>
-        <article class="card emphasis"><h3>do</h3><p class="jp">一般動詞の否定・疑問・強調を助ける。</p><p class="tc">幫助一般動詞形成否定、疑問與強調。</p><ul><li>I do not know.</li><li>Do you like it?</li><li>I do understand.</li></ul></article>
-        <article class="card emphasis"><h3>have</h3><p class="jp">所有・経験・完了形を作る。</p><p class="tc">表示擁有、經驗，也用於完成式。</p><ul><li>I have a laptop.</li><li>I have been to Tokyo.</li><li>She has finished it.</li></ul></article>
-      </div>
-    </section>
-
-    <section id="sentence-transform" class="section alt">
-      <div class="section-title">
-        <p class="eyebrow">Transform</p>
-        <h2>肯定・否定・疑問の変換</h2>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>種類</th><th>be動詞</th><th>一般動詞</th><th>繁中メモ</th></tr></thead>
-          <tbody>
-            <tr><td>肯定</td><td>He is busy.</td><td>He studies English.</td><td>肯定句：正常語順。</td></tr>
-            <tr><td>否定</td><td>He is not busy.</td><td>He does not study English.</td><td>一般動詞要借 do/does/did。</td></tr>
-            <tr><td>疑問</td><td>Is he busy?</td><td>Does he study English?</td><td>助動詞或 be 移到主詞前。</td></tr>
-            <tr><td>WH疑問</td><td>Why is he busy?</td><td>Why does he study English?</td><td>疑問詞 + 助動詞 + 主詞 + 動詞。</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="note"><strong>JP:</strong> 一般動詞の疑問文では、動詞本体は原形に戻る。<em>Does he studies?</em> は不可。<br><strong>繁中:</strong> 一般動詞疑問句中，主要動詞要回到原形。不能說 <em>Does he studies?</em></div>
-    </section>
-
-    <section id="tenses" class="section">
-      <div class="section-title">
-        <p class="eyebrow">Tense Timeline</p>
-        <h2>時制：時間 × 見え方</h2>
-        <p class="jp">英語の時制は「いつ」だけでなく「その動作をどう見ているか」で決まります。</p>
-        <p class="tc">英文時態不只表示「何時」，也表示說話者如何看待這個動作。</p>
-      </div>
-      <div class="tense-axis">
-        <div class="past">Past<br><small>過去 / 過去</small></div>
-        <div class="now">Now<br><small>現在 / 現在</small></div>
-        <div class="future">Future<br><small>未来 / 未來</small></div>
-      </div>
-      <div class="table-wrap wide">
-        <table>
-          <thead><tr><th>時制</th><th>形</th><th>使い方</th><th>例文</th><th>繁中</th></tr></thead>
-          <tbody>
-            <tr><td>現在形</td><td>V / Vs</td><td>習慣・事実・性質</td><td>I study English every day.</td><td>習慣、事實、性質。</td></tr>
-            <tr><td>過去形</td><td>V-ed / irregular</td><td>過去の一点</td><td>I studied English yesterday.</td><td>過去某一點發生的事。</td></tr>
-            <tr><td>未来</td><td>will V / be going to V</td><td>予測・意思・予定</td><td>I will study tonight.</td><td>預測、意志、計畫。</td></tr>
-            <tr><td>現在進行形</td><td>am/is/are + V-ing</td><td>今している・一時的</td><td>I am studying now.</td><td>正在做、暫時狀態。</td></tr>
-            <tr><td>過去進行形</td><td>was/were + V-ing</td><td>過去の途中</td><td>I was studying at 8.</td><td>過去某時正在進行。</td></tr>
-            <tr><td>未来進行形</td><td>will be + V-ing</td><td>未来の途中</td><td>I will be studying at 8.</td><td>未來某時正在進行。</td></tr>
-            <tr><td>現在完了</td><td>have/has + p.p.</td><td>経験・継続・完了・結果</td><td>I have studied English for years.</td><td>經驗、持續、完成、結果。</td></tr>
-            <tr><td>過去完了</td><td>had + p.p.</td><td>過去より前</td><td>I had studied before I came to Japan.</td><td>比過去某點更早。</td></tr>
-            <tr><td>未来完了</td><td>will have + p.p.</td><td>未来の時点までに完了</td><td>I will have finished it by tomorrow.</td><td>到未來某時已完成。</td></tr>
-            <tr><td>現在完了進行</td><td>have/has been + V-ing</td><td>今までずっとしている</td><td>I have been studying for three hours.</td><td>一直做到現在。</td></tr>
-            <tr><td>過去完了進行</td><td>had been + V-ing</td><td>過去の時点までずっと</td><td>I had been studying before he called.</td><td>一直做到過去某時。</td></tr>
-            <tr><td>未来完了進行</td><td>will have been + V-ing</td><td>未来までずっと</td><td>I will have been studying for five hours by noon.</td><td>到未來某時將持續多久。</td></tr>
-          </tbody>
-        </table>
+    <section class="section alt" id="grammar">
+      <div class="container">
+        <div class="section-head"><p class="eyebrow">Professor-style Grammar</p><h2>文法を「正解を選ぶ知識」から「意味を作る道具」へ</h2><p class="jp">17本の詳細Lessonを、講義・使い方・対比・典型ミス・実例・Output課題まで一続きで学びます。今後Lessonを追加し続けられる構造です。</p><p class="tc">17 個詳細課程包含講義、用法、對比、常見錯誤、真實例句與輸出任務，並可持續擴充。</p></div>
+        <div class="professor-wrap">
+          <aside class="lesson-sidebar">
+            <label for="grammarSearch">Search</label><input id="grammarSearch" type="search" placeholder="article, perfect, 仮定法...">
+            <label for="grammarLevel">Level</label><select id="grammarLevel"><option value="all">All A1–C2</option><option>A1</option><option>A2</option><option>B1</option><option>B2</option><option>C1</option><option>C2</option></select>
+            <p id="grammarCount" class="micro"></p>
+            <div class="teacher-guide"><strong>先生の見方</strong><br>① Form ② Meaning ③ Usage ④ Contrast ⑤ Error ⑥ Real example ⑦ Output の順で読みます。訳語だけで覚えません。</div>
+          </aside>
+          <div id="grammarLessonList" class="lesson-list"></div>
+        </div>
       </div>
     </section>
 
-    <section id="modals" class="section alt">
-      <div class="section-title"><p class="eyebrow">Modal Verbs</p><h2>助動詞：話し手の気持ちを足す</h2></div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>助動詞</th><th>中心イメージ</th><th>例</th><th>繁中</th></tr></thead>
-          <tbody>
-            <tr><td>can</td><td>可能・能力</td><td>I can explain it.</td><td>能夠、能力。</td></tr>
-            <tr><td>may</td><td>許可・可能性</td><td>You may leave now.</td><td>可以、可能。</td></tr>
-            <tr><td>must</td><td>義務・強い推量</td><td>You must check it.</td><td>必須、強烈推測。</td></tr>
-            <tr><td>should</td><td>助言・当然</td><td>You should sleep.</td><td>應該、建議。</td></tr>
-            <tr><td>would</td><td>丁寧・仮定・過去の習慣</td><td>Would you help me?</td><td>禮貌、假設、過去習慣。</td></tr>
-            <tr><td>could</td><td>丁寧な可能性・過去能力</td><td>Could you say that again?</td><td>委婉可能、過去能力。</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="note"><strong>Rule:</strong> 助動詞の後は必ず動詞の原形。<code>can goes</code> ではなく <code>can go</code>。</div>
-    </section>
-
-    <section id="nonfinite" class="section">
-      <div class="section-title"><p class="eyebrow">To / Ing / Participle</p><h2>不定詞・動名詞・分詞</h2></div>
-      <div class="grid three">
-        <article class="card"><h3>to不定詞</h3><p class="jp">未来・目的・これからする感じ。</p><p class="tc">帶有未來、目的、接下來要做的感覺。</p><ul><li>I want to learn English.</li><li>I study to pass the exam.</li><li>It is hard to explain.</li></ul></article>
-        <article class="card"><h3>動名詞 -ing</h3><p class="jp">行為そのもの・経験済み・一般化。</p><p class="tc">表示行為本身、已經做過、一般化。</p><ul><li>Learning English is useful.</li><li>I enjoy coding.</li><li>He finished reading it.</li></ul></article>
-        <article class="card"><h3>分詞</h3><p class="jp">形容詞のように名詞を説明する。</p><p class="tc">像形容詞一樣修飾名詞。</p><ul><li>a running dog</li><li>a broken phone</li><li>The girl sitting there is my friend.</li></ul></article>
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-head"><p class="eyebrow">Beyond grammar</p><h2>本当に使える英語に必要な6つの実践ラボ</h2></div>
+        <div class="grid grid-3">
+          <article class="card skill-card"><h3>Vocabulary</h3><p class="jp">単語訳ではなく <strong>word family / collocation / lexical chunks</strong> で覚える。</p><p class="tc">不用單字翻譯背誦，而以詞族、搭配與 chunks 學習。</p><div class="daily-task">例: decide → decision → make a decision → reach a decision</div></article>
+          <article class="card skill-card"><h3>Pronunciation</h3><p class="jp">音素だけでなく stress / schwa / weak forms / linking / rhythm / intonation。</p><p class="tc">除了單音，也練重音、弱讀、連音、節奏與語調。</p><div class="daily-task">“Could you” を単語ごとでなく一つの音の流れで聞く。</div></article>
+          <article class="card skill-card"><h3>Reading</h3><p class="jp">構文→指示→論理→筆者態度→推論→速読。</p><p class="tc">句構→指涉→邏輯→作者態度→推論→速度。</p><div class="daily-task">根拠の文を必ず本文に戻って特定する。</div></article>
+          <article class="card skill-card"><h3>Listening</h3><p class="jp">音の認識→意味のchunk→意図・暗示の推論。</p><p class="tc">辨音→意群→推論意圖與暗示。</p><div class="daily-task">聞けない原因を「知らない単語」と「音変化」に分ける。</div></article>
+          <article class="card skill-card"><h3>Speaking</h3><p class="jp">accuracy練習とfluency練習を分ける。言い換えで止まらない力を作る。</p><p class="tc">分開訓練正確度與流暢度，學會改述避免卡住。</p><div class="daily-task">30秒 → 60秒 → 2分で同じテーマを説明。</div></article>
+          <article class="card skill-card"><h3>Writing & Pragmatics</h3><p class="jp">Correct → Clear → Natural。さらに casual / neutral / formal を使い分ける。</p><p class="tc">Correct → Clear → Natural，再區分口語、中性與正式語域。</p><div class="daily-task">同じ依頼を Can / Could / Would で言い換える。</div></article>
+        </div>
       </div>
     </section>
 
-    <section id="clauses" class="section alt">
-      <div class="section-title"><p class="eyebrow">Clauses</p><h2>文を長くする仕組み</h2></div>
-      <div class="grid two">
-        <article class="card"><h3>名詞節 / 名詞子句</h3><p>I think <strong>that he is right</strong>.</p><p class="jp">that以下が「何を思うか」という目的語になる。</p><p class="tc">that 後面整句變成 think 的受詞。</p></article>
-        <article class="card"><h3>関係詞 / 關係詞</h3><p>The book <strong>that I bought yesterday</strong> is useful.</p><p class="jp">名詞 book を後ろから説明する。</p><p class="tc">從後面補充說明名詞 book。</p></article>
-        <article class="card"><h3>副詞節 / 副詞子句</h3><p>I will call you <strong>when I arrive</strong>.</p><p class="jp">時・理由・条件などを足す。</p><p class="tc">補充時間、理由、條件等。</p></article>
-        <article class="card"><h3>接続詞 / 連接詞</h3><p>because, although, if, when, while, before, after</p><p class="jp">文と文を論理でつなぐ。</p><p class="tc">用邏輯連接句子與句子。</p></article>
+    <section class="section alt" id="practice">
+      <div class="container">
+        <div class="section-head"><p class="eyebrow">Active recall</p><h2>自動採点で「分かったつもり」をなくす</h2><p class="jp">基礎、C1/C2精密文法、TOEIC Part 5型を分けて練習できます。</p><p class="tc">可分別練基礎、高階精密文法與 TOEIC Part 5 型題目。</p></div>
+        <div class="practice-grid">
+          <article class="practice-panel">
+            <h3>10-question Quiz</h3>
+            <div class="quiz-controls"><select id="quizMode"><option value="mixed">Mixed</option><option value="foundation">Foundation</option><option value="advanced">Advanced B2–C2</option><option value="toeic">TOEIC 990</option></select><button id="startQuiz" class="secondary" type="button">New Quiz</button></div>
+            <div id="quizQuestions"></div>
+            <div class="button-row"><button id="gradeQuiz" class="primary" type="button">採点する</button><div id="quizResult" class="score-box"></div></div>
+          </article>
+          <article class="practice-panel">
+            <h3>Sentence Transformation</h3>
+            <p class="jp">語順や助動詞を「見る」のではなく、元の文から自分で変形します。</p><p class="tc">不是看答案，而是從原句自己完成變形。</p>
+            <div id="transformList"></div>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section id="advanced-core" class="section">
-      <div class="section-title"><p class="eyebrow">Advanced Core</p><h2>受動態・比較・仮定法</h2></div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>文法</th><th>形</th><th>例</th><th>日本語</th><th>繁中</th></tr></thead>
-          <tbody>
-            <tr><td>受動態</td><td>be + p.p.</td><td>The robot was built by students.</td><td>〜される</td><td>被〜</td></tr>
-            <tr><td>比較級</td><td>-er / more</td><td>This method is faster.</td><td>より〜</td><td>比〜更〜</td></tr>
-            <tr><td>最上級</td><td>-est / most</td><td>This is the most important rule.</td><td>最も〜</td><td>最〜</td></tr>
-            <tr><td>仮定法過去</td><td>If + past, would V</td><td>If I had time, I would study more.</td><td>もし今〜なら</td><td>如果現在〜的話</td></tr>
-            <tr><td>仮定法過去完了</td><td>If + had p.p., would have p.p.</td><td>If I had known it, I would have helped.</td><td>もし過去に〜だったら</td><td>如果當時〜的話</td></tr>
-          </tbody>
-        </table>
+    <section class="section" id="toeic">
+      <div class="container">
+        <div class="section-head"><p class="eyebrow">TOEIC 990 benchmark</p><h2>990を狙う。でも「TOEIC英語」だけにはしない</h2><p class="jp">TOEIC L&RのListening 100問・Reading 100問を、高い語彙/文法精度と処理速度のベンチマークとして使います。その外側にSpeaking・Writing・発音・語用論を置きます。</p><p class="tc">把 TOEIC L&R 的 Listening 100 題與 Reading 100 題當成精準度與處理速度的 benchmark，同時在考試之外繼續訓練口說、寫作、發音與語用。</p></div>
+        <div class="toeic-score"><div class="score-half"><span>Listening</span><strong>495</strong></div><b>+</b><div class="score-half"><span>Reading</span><strong>495</strong></div><b>= 990</b></div>
+        <div id="toeicPartGrid" class="grid grid-4"></div>
+        <div class="grid grid-2" style="margin-top:18px">
+          <article class="note-box card"><h3>990 training principles</h3><ul><li>Part 5は「品詞→構造→語法→意味」で高速診断</li><li>Part 6は文単位でなく段落のcohesionを見る</li><li>Part 7は言い換え・根拠・推論・複数文書統合</li><li>Listeningは設問先読みだけでなく音変化そのものを訓練</li></ul></article>
+          <article class="note-box card"><h3>TOEICだけでは終わらない</h3><ul><li>自分の意見を2分話す</li><li>200語以上を論理的に書く</li><li>formal / casualを自然に切り替える</li><li>発音・rhythm・interactionを鍛える</li></ul></article>
+        </div>
+        <details class="source-box"><summary>Official format references</summary><p>IIBC: <a href="https://www.iibc-global.org/toeic/test/lr/about/format.html" target="_blank" rel="noreferrer">TOEIC L&R test format</a><br>ETS: <a href="https://www.ets.org/toeic/about/faq/product-specific-faq/toeic-listening-reading.html" target="_blank" rel="noreferrer">TOEIC Listening & Reading FAQ</a></p></details>
       </div>
     </section>
 
-    <section id="examples" class="section alt">
-      <div class="section-title"><p class="eyebrow">Example Bank</p><h2>型で覚える例文バンク</h2><p class="tc">用句型記憶的例句庫。</p></div>
-      <div class="search-box">
-        <input id="exampleSearch" type="search" placeholder="例文を検索 / 搜尋例句: tense, passive, modal..." />
-      </div>
-      <div id="exampleList" class="example-list">
-        <article data-keywords="present tense habit"><strong>I study English every morning.</strong><span>現在形：習慣 / 現在式：習慣。</span></article>
-        <article data-keywords="past tense"><strong>I studied English yesterday.</strong><span>過去形：過去の一点 / 過去式：過去某一點。</span></article>
-        <article data-keywords="future will"><strong>I will study English tonight.</strong><span>未来：意思・予測 / 未來：意志、預測。</span></article>
-        <article data-keywords="progressive"><strong>I am studying English now.</strong><span>進行形：今している / 進行式：正在做。</span></article>
-        <article data-keywords="perfect"><strong>I have studied English for three years.</strong><span>現在完了：継続 / 現在完成：持續。</span></article>
-        <article data-keywords="perfect progressive"><strong>I have been studying English since morning.</strong><span>現在完了進行：ずっと継続 / 現在完成進行：一直持續。</span></article>
-        <article data-keywords="negative do"><strong>He does not speak fast.</strong><span>一般動詞の否定 / 一般動詞否定。</span></article>
-        <article data-keywords="question do"><strong>Does he speak English?</strong><span>一般動詞の疑問 / 一般動詞疑問。</span></article>
-        <article data-keywords="modal can"><strong>I can explain this grammar.</strong><span>助動詞 can + 原形 / 助動詞後接原形。</span></article>
-        <article data-keywords="passive"><strong>This page was written for beginners.</strong><span>受動態 / 被動態。</span></article>
-        <article data-keywords="relative clause"><strong>The grammar that I learned today is useful.</strong><span>関係詞 / 關係詞。</span></article>
-        <article data-keywords="conditional"><strong>If I had more time, I would read it again.</strong><span>仮定法 / 假設語氣。</span></article>
+    <section class="section alt" id="sound">
+      <div class="container">
+        <div class="section-head"><p class="eyebrow">Listening + pronunciation</p><h2>聞こえない音を、聞いて・書いて・言える音にする</h2></div>
+        <div class="grid grid-2">
+          <article class="practice-panel"><h3>Dictation</h3><p class="jp">音声だけを聞いて入力します。聞き取れなければSlowで確認。</p><p class="tc">只聽聲音輸入句子，聽不清楚再用 Slow。</p><div class="speed-row"><button id="dictationPlay" class="chip" type="button">▶ Normal</button><button id="dictationSlow" class="chip" type="button">▶ Slow</button><button id="dictationNew" class="chip" type="button">↻ New</button></div><input id="dictationInput" class="text-input" style="margin-top:12px" autocomplete="off" placeholder="Type what you hear"><button id="dictationCheck" class="primary" style="margin-top:10px" type="button">Check</button><p id="dictationFeedback"></p></article>
+          <article class="practice-panel"><h3>Shadowing protocol</h3><ol><li>意味を確認せず1回聞く</li><li>scriptを見て意味と構文を確認</li><li>音声に重ねて3回</li><li>scriptなしで3回</li><li>自分の内容へ1箇所変えて発話</li></ol><blockquote>“The results suggest that the method is effective.”</blockquote><button class="chip" data-speak="The results suggest that the method is effective." type="button">▶ Model voice</button></article>
+        </div>
       </div>
     </section>
 
-    <section id="common-traps" class="section">
-      <div class="section-title"><p class="eyebrow">Common Traps</p><h2>日本語・中国語母語話者が間違えやすい点</h2></div>
-      <div class="grid cards">
-        <article class="card"><h3>主語を省略しない</h3><p>× Is difficult. → ○ It is difficult.</p><p class="tc">英文通常不能省略主詞。</p></article>
-        <article class="card"><h3>動詞を必ず置く</h3><p>× I student. → ○ I am a student.</p><p class="tc">英文句子通常一定要有動詞。</p></article>
-        <article class="card"><h3>三単現 -s</h3><p>× She like music. → ○ She likes music.</p><p class="tc">現在式第三人稱單數要加 s。</p></article>
-        <article class="card"><h3>冠詞 a/the</h3><p>I bought a book. The book was useful.</p><p class="tc">第一次出現常用 a，已知或特定用 the。</p></article>
-        <article class="card"><h3>時制を合わせる</h3><p>Yesterday, I went home early.</p><p class="tc">有過去時間時，動詞要用過去式。</p></article>
-        <article class="card"><h3>助動詞後は原形</h3><p>× can goes → ○ can go</p><p class="tc">助動詞後面一定接原形。</p></article>
+    <section class="section" id="output">
+      <div class="container">
+        <div class="section-head"><p class="eyebrow">Speaking + writing</p><h2>英語で考えを組み立てる</h2></div>
+        <div class="grid grid-3">
+          <article class="card"><h3>30 sec · Foundation</h3><p>Introduce yourself: who you are, what you study/work on, and one thing you enjoy.</p><div class="daily-task">目標: 3〜5文。正確さ優先。</div></article>
+          <article class="card"><h3>90 sec · B2/C1</h3><p>Explain one problem you are solving. Give the background, your approach, one limitation, and the next step.</p><div class="daily-task">目標: because / however / therefore を必要な所だけ使う。</div></article>
+          <article class="card"><h3>200 words · C1/C2</h3><p>Argue whether AI should replace or support human decision-making in a field you know well.</p><div class="daily-task">目標: thesis → reason → evidence/example → counterpoint → conclusion。</div></article>
+        </div>
       </div>
     </section>
 
-    <section id="download" class="section alt final-section">
-      <div class="section-title">
-        <p class="eyebrow">Next</p>
-        <h2>次に追加すると良いもの</h2>
-        <p class="jp">このサイトは最初の土台です。次は各章を1ページずつ分け、例文を100〜300文まで増やし、音読用ページと確認テストを追加できます。</p>
-        <p class="tc">這個網站是第一版基礎。下一步可以把每章拆成獨立頁面，把例句增加到 100〜300 句，並加入朗讀頁與確認測驗。</p>
+    <section class="section alt" id="c2">
+      <div class="container"><div class="section-head"><p class="eyebrow">C2 direction</p><h2>上級者ほど「難しい単語」より、精度・言い換え・推論・自己修正</h2><p class="jp">CEFRのC2を自動認定するサイトではありません。C2級の運用に必要な方向性を日々の行動に落とします。</p><p class="tc">本站不會自動認證 C2，而是把高階運用需要的能力轉成每天可以訓練的行為。</p></div><div id="c2Grid" class="grid grid-3"></div></div>
+    </section>
+
+    <section class="section" id="sentences">
+      <div class="container"><div class="section-head"><p class="eyebrow">Core sentence bank</p><h2>使える英文をchunkで蓄積する</h2></div><input id="sentenceSearch" class="text-input" type="search" placeholder="Search English / 日本語 / 中文"><div id="sentenceBank" class="grid grid-3" style="margin-top:16px"></div></div>
+    </section>
+
+    <section class="section alt" id="review">
+      <div class="container">
+        <div class="section-head"><p class="eyebrow">Review system</p><h2>間違いを次の教材にする</h2><p class="jp">誤答は「正解」だけでなく、なぜ自分がその選択をしたかまで残します。</p><p class="tc">錯題不只記正解，也記自己為什麼會選錯。</p></div>
+        <div class="grid grid-3">
+          <article class="card"><h3>Mistake Notebook</h3><textarea id="mistakeNotebook" class="notebook" placeholder="× Does he studies English?&#10;○ Does he study English?&#10;Why: does carries the tense, so study returns to the base form."></textarea><p class="micro">Auto-saved locally.</p></article>
+          <article class="card"><h3>Spaced review</h3><div class="timeline-list"><div><strong>Today</strong><span>理由まで確認</span></div><div><strong>Tomorrow</strong><span>ノートを3分</span></div><div><strong>+3 days</strong><span>別の文で再生成</span></div><div><strong>+7 days</strong><span>見ずに話す/書く</span></div></div></article>
+          <article class="card"><h3>Weekly mastery check</h3><div class="review-list"><label><input type="checkbox" data-progress="weekly-1"> Quiz 8/10以上</label><label><input type="checkbox" data-progress="weekly-2"> 2分Speaking</label><label><input type="checkbox" data-progress="weekly-3"> 200-word Writing</label><label><input type="checkbox" data-progress="weekly-4"> 間違い3つを理由付きで説明</label></div><button id="resetProgress" class="text-btn" type="button">進捗をリセット</button></article>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <p>Built for SYUN / しゅん — English Grammar & Verb Master JP / 繁中.</p>
-  </footer>
-
-  <script src="script.js"></script>
+  <footer class="footer"><p>English Mastery Lab — TOEIC 990 benchmark, C2 direction, real-world English. JP / 繁中.</p></footer>
+  <script src="mastery-data.js"></script>
+  <script src="mastery-app.js"></script>
 </body>
 </html>
