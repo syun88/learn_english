@@ -3,184 +3,171 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>English Mastery Lab | C2 Direction + TOEIC 990 | JP / 繁中</title>
-  <meta name="description" content="日本語・繁體中文で英語を基礎から高度な運用力まで学ぶ実践教材。文法・語法・語彙・発音・Listening・Reading・Speaking・Writingを統合し、TOEIC 990もベンチマークとして目指します。" />
+  <title>English Mastery Lab | Complete English + TOEIC 990</title>
+  <meta name="description" content="日本語・繁體中文でA1からC2方向まで英語を体系的に学ぶ学習アプリ。文法・語法・語彙・発音・Listening・Reading・Speaking・Writingを統合し、TOEIC 990もベンチマークとして目指します。" />
   <link rel="stylesheet" href="mastery.css" />
 </head>
 <body>
-  <nav class="topbar" aria-label="Main navigation">
-    <a class="brand" href="#top">English Mastery Lab</a>
-    <div class="nav">
-      <a href="#course">Course</a><a href="#mastery">Mastery</a><a href="#grammar">Grammar</a>
-      <a href="#practice">Practice</a><a href="#toeic">TOEIC</a><a href="#review">Review</a>
-    </div>
-    <div class="toolbar">
-      <div class="lang-switch">
-        <button class="lang-button active" data-lang="both" type="button">JP+繁中</button>
-        <button class="lang-button" data-lang="jp" type="button">JP</button>
-        <button class="lang-button" data-lang="tc" type="button">繁中</button>
+<div class="app-shell">
+  <aside class="sidebar" aria-label="Primary navigation">
+    <a class="brand" href="#home"><span class="brand-mark">EM</span><span><strong>English Mastery</strong><small>Lab</small></span></a>
+    <nav class="side-nav">
+      <a class="active" href="#home" data-nav="home"><span>⌂</span>Home</a>
+      <a href="#path" data-nav="path"><span>↗</span>Path</a>
+      <a href="#grammar" data-nav="grammar"><span>G</span>Grammar</a>
+      <a href="#coverage" data-nav="coverage"><span>✓</span>Coverage</a>
+      <a href="#skills" data-nav="skills"><span>∞</span>Skills</a>
+      <a href="#practice" data-nav="practice"><span>✎</span>Practice</a>
+      <a href="#toeic" data-nav="toeic"><span>990</span>TOEIC</a>
+      <a href="#review" data-nav="review"><span>↻</span>Review</a>
+    </nav>
+    <div class="sidebar-foot">
+      <div class="lang-switch" aria-label="Explanation language">
+        <button class="lang-button active" type="button" data-lang="both">JP+繁中</button>
+        <button class="lang-button" type="button" data-lang="jp">JP</button>
+        <button class="lang-button" type="button" data-lang="tc">繁中</button>
       </div>
-      <button id="themeToggle" class="ghost" type="button">Dark</button>
+      <button id="themeToggle" class="ghost full" type="button">Dark mode</button>
     </div>
-  </nav>
+  </aside>
 
-  <header class="hero" id="top">
-    <div class="container hero-grid">
-      <div>
-        <p class="eyebrow">A1 → C2 direction · TOEIC 990 is a benchmark, not the destination</p>
-        <h1>TOEIC満点の先まで。<br>英語そのものを使いこなす。</h1>
-        <p class="lead jp">TOEIC 990を狙える精度と処理速度を育てながら、試験だけでは十分に測れないSpeaking・Writing・発音・語用論まで鍛えます。文法は「ルール → なぜ → ニュアンス → 使い分け → よくある誤り → 実例 → Output」の順で、先生の授業のように学びます。</p>
-        <p class="lead tc">以 TOEIC 990 所需的精準度與速度為其中一個里程碑，但不把考試當終點。也訓練口說、寫作、發音與語用；文法依「規則 → 為什麼 → 語感 → 用法差異 → 常見錯誤 → 真實例句 → 輸出」完整學習。</p>
-        <div class="cta-row"><a class="primary" href="#grammar">Professor Grammarを始める</a><a class="secondary" href="#practice">今日の練習へ</a></div>
-      </div>
-      <aside class="dashboard">
-        <p class="eyebrow">Your Progress</p>
-        <div class="target-badges"><span>C2 direction</span><span>TOEIC 990 benchmark</span></div>
-        <div class="progress-number"><span id="progressPercent">0</span>%</div>
-        <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
-        <div class="stats">
-          <div><strong id="completedCount">0</strong><span>Lessons</span></div>
-          <div><strong id="studyDayCount">0</strong><span>Study days</span></div>
-          <div><strong id="bestQuizScore">0</strong><span>Quiz best</span></div>
+  <main class="main">
+    <header class="mobile-top">
+      <a class="mobile-brand" href="#home">English Mastery Lab</a>
+      <button id="mobileMenu" class="ghost" type="button">Menu</button>
+    </header>
+
+    <section class="screen hero-screen" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow">A1 → C2 direction · TOEIC 990 benchmark</p>
+        <h1>試験のためではなく、<br>英語を使いこなすために学ぶ。</h1>
+        <p class="lead jp">文法を「知っている」から、聞いて・読んで・話して・書ける状態へ。TOEIC 990に必要な精度と速度も鍛えますが、最終目標は実際の英語運用力です。</p>
+        <p class="lead tc">把文法從「知道」變成真正能聽、讀、說、寫的能力。TOEIC 990 所需的精準度與速度也是里程碑，但終點是實際運用英文。</p>
+        <div class="hero-actions">
+          <button id="continueLearning" class="primary large" type="button">Continue learning</button>
+          <a class="secondary large" href="#grammar">Grammar library</a>
         </div>
-        <button id="markToday" class="primary" type="button">今日の学習を記録</button>
-        <p id="todayStatus" class="micro">ブラウザ内に保存します。</p>
+      </div>
+      <aside class="today-card">
+        <div class="today-head"><span>Today</span><span id="todayDate"></span></div>
+        <p class="today-label">Recommended next</p>
+        <h2 id="nextLessonTitle">Loading…</h2>
+        <p id="nextLessonMeta" class="muted"></p>
+        <div class="progress-line"><div id="overallBar"></div></div>
+        <div class="metric-row">
+          <div><strong id="grammarDone">0</strong><span>Grammar lessons</span></div>
+          <div><strong id="studyDays">0</strong><span>Study days</span></div>
+          <div><strong id="quizBest">0</strong><span>Quiz best</span></div>
+        </div>
+        <button id="markToday" class="text-action" type="button">+ Record today as a study day</button>
       </aside>
-    </div>
-  </header>
+    </section>
 
-  <main>
-    <section class="section" id="routine">
-      <div class="container">
-        <div class="section-head"><p class="eyebrow">Daily system</p><h2>毎日「理解した英語」を「使える英語」に変える</h2><p class="jp">最低25分。時間がある日は45〜60分。読むだけの日を作らず、必ず聞く・話す・書くのどれかまで進めます。</p><p class="tc">最低 25 分，有時間做 45–60 分鐘。不要只閱讀，每天至少做到聽、說、寫其中一項輸出。</p></div>
-        <div class="grid grid-4">
-          <article class="card"><strong class="kicker">01 · UNDERSTAND</strong><h3>Grammar 8–12 min</h3><p class="jp">講義を1Lesson。形ではなく「なぜ」を説明できるまで。</p><p class="tc">每天一課，目標不是背形式，而是能解釋「為什麼」。</p></article>
-          <article class="card"><strong class="kicker">02 · RECALL</strong><h3>Quiz 8–12 min</h3><p class="jp">Foundation / Advanced / TOEICから見ずに答える。</p><p class="tc">從 Foundation / Advanced / TOEIC 不看答案直接回想。</p></article>
-          <article class="card"><strong class="kicker">03 · SOUND</strong><h3>Listen + Speak 10 min</h3><p class="jp">ディクテーション→音読→シャドーイング。</p><p class="tc">聽寫 → 朗讀 → Shadowing。</p></article>
-          <article class="card"><strong class="kicker">04 · CREATE</strong><h3>Write / Speak 10 min</h3><p class="jp">今日の文法・語彙で自分の内容を作る。</p><p class="tc">用今天學的文法與詞彙表達自己的內容。</p></article>
+    <section class="screen compact" id="path">
+      <div class="section-title">
+        <p class="eyebrow">Learning path</p>
+        <h2>レベルではなく「できること」が増える順に進む</h2>
+        <p class="jp">CEFRは到達能力の目安として使い、各段階でGrammar・Vocabulary・Sound・Input・Outputを同時に伸ばします。</p>
+        <p class="tc">CEFR 作為能力方向，每個階段同時發展文法、詞彙、聲音、輸入與輸出。</p>
+      </div>
+      <div id="pathGrid" class="path-grid"></div>
+    </section>
+
+    <section class="screen" id="grammar">
+      <div class="section-title grammar-title">
+        <div>
+          <p class="eyebrow">Professor Grammar</p>
+          <h2>1 Lessonずつ、先生の授業のように。</h2>
+          <p class="jp">Form → Meaning → Usage → Contrast → Real examples → Output。全部を一度にスクロールせず、左からLessonを選んで中央で集中して学びます。</p>
+          <p class="tc">依 Form → Meaning → Usage → Contrast → 真實例句 → Output 學習，一次專注一課。</p>
         </div>
+        <div class="coverage-summary"><strong id="lessonTotal">0</strong><span>Detailed lessons</span><small>Core syllabus, not an exhaustive list of every possible English construction.</small></div>
+      </div>
+
+      <div class="grammar-workspace">
+        <aside class="grammar-browser">
+          <div class="filter-stack">
+            <input id="grammarSearch" type="search" placeholder="Search: article, perfect, 関係詞…" />
+            <div class="filter-row">
+              <select id="grammarLevel" aria-label="Grammar level">
+                <option value="all">All levels</option><option value="A1">A1</option><option value="A2">A2</option><option value="B1">B1</option><option value="B2">B2</option><option value="C1">C1</option><option value="C2">C2</option>
+              </select>
+              <select id="grammarDomain" aria-label="Grammar domain"><option value="all">All domains</option></select>
+            </div>
+          </div>
+          <div class="browser-meta"><span id="grammarCount"></span><button id="showIncomplete" class="chip" type="button">Incomplete only</button></div>
+          <div id="grammarList" class="grammar-list" role="listbox" aria-label="Grammar lessons"></div>
+        </aside>
+
+        <article id="grammarReader" class="grammar-reader" aria-live="polite"></article>
       </div>
     </section>
 
-    <section class="section alt" id="course">
-      <div class="container">
-        <div class="section-head"><p class="eyebrow">12-unit curriculum</p><h2>基礎 → 精密文法 → 自然な運用 → 990</h2><p class="jp">Unit 1〜8で土台、9〜11で上級運用、12でC2方向の統合力とTOEIC高得点処理を鍛えます。</p><p class="tc">Unit 1–8 打底，9–11 進入高階運用，12 整合 C2 方向能力與 TOEIC 高分所需速度。</p></div>
-        <div id="courseGrid" class="grid grid-3"></div>
-      </div>
-    </section>
-
-    <section class="section" id="mastery">
-      <div class="container">
-        <div class="section-head"><p class="eyebrow">Complete English</p><h2>英語力を8領域に分解して、全部伸ばす</h2><p class="jp">TOEIC L&Rだけに最適化せず、理解・表現・音・自然さを統合します。</p><p class="tc">不只最佳化 TOEIC L&R，而是整合理解、表達、聲音與自然度。</p></div>
-        <div id="masteryGrid" class="grid grid-4"></div>
-        <div class="mastery-equation">Accuracy × Automaticity × Appropriacy = Mastery<br><small>正確さ × 自動化 × 場面に合う自然さ</small></div>
-      </div>
-    </section>
-
-    <section class="section alt" id="grammar">
-      <div class="container">
-        <div class="section-head"><p class="eyebrow">Professor-style Grammar</p><h2>文法を「正解を選ぶ知識」から「意味を作る道具」へ</h2><p class="jp">17本の詳細Lessonを、講義・使い方・対比・典型ミス・実例・Output課題まで一続きで学びます。今後Lessonを追加し続けられる構造です。</p><p class="tc">17 個詳細課程包含講義、用法、對比、常見錯誤、真實例句與輸出任務，並可持續擴充。</p></div>
-        <div class="professor-wrap">
-          <aside class="lesson-sidebar">
-            <label for="grammarSearch">Search</label><input id="grammarSearch" type="search" placeholder="article, perfect, 仮定法...">
-            <label for="grammarLevel">Level</label><select id="grammarLevel"><option value="all">All A1–C2</option><option>A1</option><option>A2</option><option>B1</option><option>B2</option><option>C1</option><option>C2</option></select>
-            <p id="grammarCount" class="micro"></p>
-            <div class="teacher-guide"><strong>先生の見方</strong><br>① Form ② Meaning ③ Usage ④ Contrast ⑤ Error ⑥ Real example ⑦ Output の順で読みます。訳語だけで覚えません。</div>
-          </aside>
-          <div id="grammarLessonList" class="lesson-list"></div>
+    <section class="screen compact alt" id="coverage">
+      <div class="section-title split-title">
+        <div>
+          <p class="eyebrow">Grammar coverage audit</p>
+          <h2>「何を学んだか」だけでなく、「何が抜けていないか」を見る。</h2>
+          <p class="jp">文法は17章では不足していました。現在は細かい項目を9領域に分け、主要構文を詳細Lessonへ接続しています。</p>
+          <p class="tc">原本 17 課不足以覆蓋核心文法。現在把細項分成九大領域，並連接到詳細課程。</p>
         </div>
+        <div class="audit-note"><strong>Important</strong><span>Cambridge English Grammar Profileには1,200超の記述があります。このサイトはそれを1,200ページに複製するのではなく、実用上まとまりの良いLessonへ統合します。</span></div>
+      </div>
+      <div id="coverageGrid" class="coverage-grid"></div>
+    </section>
+
+    <section class="screen compact" id="skills">
+      <div class="section-title">
+        <p class="eyebrow">Complete English</p><h2>Grammarだけでは英語は完成しない。</h2>
+        <p class="jp">英語力を8領域に分け、弱点を独立して鍛えます。</p><p class="tc">把英文能力分成八個領域，分別補強弱點。</p>
+      </div>
+      <div id="skillGrid" class="skill-grid"></div>
+    </section>
+
+    <section class="screen alt" id="practice">
+      <div class="section-title"><p class="eyebrow">Practice lab</p><h2>Recognition → Recall → Production</h2><p class="jp">選択問題だけで終わらず、変形・聴き取り・自分の英文まで段階的に負荷を上げます。</p><p class="tc">不只做選擇題，逐步進入變形、聽寫與自己產出英文。</p></div>
+      <div class="practice-tabs" role="tablist">
+        <button class="tab active" data-tab="quiz" type="button">Quiz</button>
+        <button class="tab" data-tab="transform" type="button">Transform</button>
+        <button class="tab" data-tab="dictation" type="button">Dictation</button>
+        <button class="tab" data-tab="output" type="button">Output</button>
+      </div>
+      <div class="practice-stage">
+        <section class="tab-panel active" data-panel="quiz">
+          <div class="practice-head"><div><h3>10-question adaptive quiz</h3><p class="muted">まず見ずに答え、採点後に理由を読む。</p></div><div class="inline-controls"><select id="quizMode"><option value="mixed">Mixed</option><option value="foundation">Foundation</option><option value="advanced">Advanced</option><option value="toeic">TOEIC-style</option></select><button id="newQuiz" class="secondary" type="button">New quiz</button></div></div>
+          <div id="quizQuestions" class="quiz-list"></div>
+          <div class="practice-footer"><button id="gradeQuiz" class="primary" type="button">Grade</button><strong id="quizResult"></strong></div>
+        </section>
+        <section class="tab-panel" data-panel="transform"><h3>Sentence transformation</h3><p class="muted">同じ意味を別の文法で作り直します。</p><div id="transformList"></div></section>
+        <section class="tab-panel" data-panel="dictation"><h3>Dictation</h3><p class="muted">音→語→文法の順に聞き取る。聞けない原因を特定します。</p><div class="audio-controls"><button id="dictationPlay" class="primary" type="button">▶ Normal</button><button id="dictationSlow" class="secondary" type="button">▶ Slow</button><button id="dictationNew" class="secondary" type="button">New</button></div><textarea id="dictationInput" placeholder="Type what you hear…"></textarea><button id="dictationCheck" class="primary" type="button">Check</button><div id="dictationFeedback" class="feedback-box"></div></section>
+        <section class="tab-panel" data-panel="output"><h3>Speaking & Writing output</h3><div class="output-grid"><article><span>30 sec</span><h4>Explain today</h4><p>What did you learn today, and why is it useful?</p></article><article><span>90 sec</span><h4>Compare two ideas</h4><p>Compare two tools, methods, places, or experiences and justify your preference.</p></article><article><span>150–200 words</span><h4>Structured paragraph</h4><p>Claim → reason → example → limitation → conclusion.</p></article></div><textarea id="outputDraft" placeholder="Write your draft here. It is saved locally."></textarea></section>
       </div>
     </section>
 
-    <section class="section" id="skills">
-      <div class="container">
-        <div class="section-head"><p class="eyebrow">Beyond grammar</p><h2>本当に使える英語に必要な6つの実践ラボ</h2></div>
-        <div class="grid grid-3">
-          <article class="card skill-card"><h3>Vocabulary</h3><p class="jp">単語訳ではなく <strong>word family / collocation / lexical chunks</strong> で覚える。</p><p class="tc">不用單字翻譯背誦，而以詞族、搭配與 chunks 學習。</p><div class="daily-task">例: decide → decision → make a decision → reach a decision</div></article>
-          <article class="card skill-card"><h3>Pronunciation</h3><p class="jp">音素だけでなく stress / schwa / weak forms / linking / rhythm / intonation。</p><p class="tc">除了單音，也練重音、弱讀、連音、節奏與語調。</p><div class="daily-task">“Could you” を単語ごとでなく一つの音の流れで聞く。</div></article>
-          <article class="card skill-card"><h3>Reading</h3><p class="jp">構文→指示→論理→筆者態度→推論→速読。</p><p class="tc">句構→指涉→邏輯→作者態度→推論→速度。</p><div class="daily-task">根拠の文を必ず本文に戻って特定する。</div></article>
-          <article class="card skill-card"><h3>Listening</h3><p class="jp">音の認識→意味のchunk→意図・暗示の推論。</p><p class="tc">辨音→意群→推論意圖與暗示。</p><div class="daily-task">聞けない原因を「知らない単語」と「音変化」に分ける。</div></article>
-          <article class="card skill-card"><h3>Speaking</h3><p class="jp">accuracy練習とfluency練習を分ける。言い換えで止まらない力を作る。</p><p class="tc">分開訓練正確度與流暢度，學會改述避免卡住。</p><div class="daily-task">30秒 → 60秒 → 2分で同じテーマを説明。</div></article>
-          <article class="card skill-card"><h3>Writing & Pragmatics</h3><p class="jp">Correct → Clear → Natural。さらに casual / neutral / formal を使い分ける。</p><p class="tc">Correct → Clear → Natural，再區分口語、中性與正式語域。</p><div class="daily-task">同じ依頼を Can / Could / Would で言い換える。</div></article>
-        </div>
+    <section class="screen compact" id="toeic">
+      <div class="section-title split-title"><div><p class="eyebrow">TOEIC 990 benchmark</p><h2>TOEICは「速度と精度」の試験として利用する。</h2><p class="jp">Part 1–7を攻略しますが、TOEIC専用テクニックより先に語彙・構文・音・推論の基礎を作ります。</p><p class="tc">練習 Part 1–7，但先建立詞彙、句構、聲音與推論能力，再談考試技巧。</p></div><div class="score-card"><span>Listening</span><strong>495</strong><span>Reading</span><strong>495</strong><small>Target benchmark: 990</small></div></div>
+      <div id="toeicGrid" class="toeic-grid"></div>
+      <div class="source-strip">Official structure: TOEIC Listening & Reading = 100 Listening + 100 Reading questions, score range 10–990. See ETS / IIBC official information.</div>
+    </section>
+
+    <section class="screen alt compact" id="review">
+      <div class="section-title"><p class="eyebrow">Review system</p><h2>間違いを「記録」で終わらせず、再登場させる。</h2></div>
+      <div class="review-grid">
+        <article class="panel"><h3>Spaced review</h3><div class="review-steps"><div><strong>1 day</strong><span>答えを見ずに再現</span></div><div><strong>3 days</strong><span>別例で使う</span></div><div><strong>7 days</strong><span>会話/作文で再利用</span></div><div><strong>30 days</strong><span>長文・自然さまで確認</span></div></div></article>
+        <article class="panel"><h3>Mistake notebook</h3><textarea id="mistakeNotebook" placeholder="Wrong → Correct → Why → My new example"></textarea></article>
       </div>
+      <div class="danger-row"><button id="resetProgress" class="danger" type="button">Reset learning progress</button></div>
     </section>
 
-    <section class="section alt" id="practice">
-      <div class="container">
-        <div class="section-head"><p class="eyebrow">Active recall</p><h2>自動採点で「分かったつもり」をなくす</h2><p class="jp">基礎、C1/C2精密文法、TOEIC Part 5型を分けて練習できます。</p><p class="tc">可分別練基礎、高階精密文法與 TOEIC Part 5 型題目。</p></div>
-        <div class="practice-grid">
-          <article class="practice-panel">
-            <h3>10-question Quiz</h3>
-            <div class="quiz-controls"><select id="quizMode"><option value="mixed">Mixed</option><option value="foundation">Foundation</option><option value="advanced">Advanced B2–C2</option><option value="toeic">TOEIC 990</option></select><button id="startQuiz" class="secondary" type="button">New Quiz</button></div>
-            <div id="quizQuestions"></div>
-            <div class="button-row"><button id="gradeQuiz" class="primary" type="button">採点する</button><div id="quizResult" class="score-box"></div></div>
-          </article>
-          <article class="practice-panel">
-            <h3>Sentence Transformation</h3>
-            <p class="jp">語順や助動詞を「見る」のではなく、元の文から自分で変形します。</p><p class="tc">不是看答案，而是從原句自己完成變形。</p>
-            <div id="transformList"></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="toeic">
-      <div class="container">
-        <div class="section-head"><p class="eyebrow">TOEIC 990 benchmark</p><h2>990を狙う。でも「TOEIC英語」だけにはしない</h2><p class="jp">TOEIC L&RのListening 100問・Reading 100問を、高い語彙/文法精度と処理速度のベンチマークとして使います。その外側にSpeaking・Writing・発音・語用論を置きます。</p><p class="tc">把 TOEIC L&R 的 Listening 100 題與 Reading 100 題當成精準度與處理速度的 benchmark，同時在考試之外繼續訓練口說、寫作、發音與語用。</p></div>
-        <div class="toeic-score"><div class="score-half"><span>Listening</span><strong>495</strong></div><b>+</b><div class="score-half"><span>Reading</span><strong>495</strong></div><b>= 990</b></div>
-        <div id="toeicPartGrid" class="grid grid-4"></div>
-        <div class="grid grid-2" style="margin-top:18px">
-          <article class="note-box card"><h3>990 training principles</h3><ul><li>Part 5は「品詞→構造→語法→意味」で高速診断</li><li>Part 6は文単位でなく段落のcohesionを見る</li><li>Part 7は言い換え・根拠・推論・複数文書統合</li><li>Listeningは設問先読みだけでなく音変化そのものを訓練</li></ul></article>
-          <article class="note-box card"><h3>TOEICだけでは終わらない</h3><ul><li>自分の意見を2分話す</li><li>200語以上を論理的に書く</li><li>formal / casualを自然に切り替える</li><li>発音・rhythm・interactionを鍛える</li></ul></article>
-        </div>
-        <details class="source-box"><summary>Official format references</summary><p>IIBC: <a href="https://www.iibc-global.org/toeic/test/lr/about/format.html" target="_blank" rel="noreferrer">TOEIC L&R test format</a><br>ETS: <a href="https://www.ets.org/toeic/about/faq/product-specific-faq/toeic-listening-reading.html" target="_blank" rel="noreferrer">TOEIC Listening & Reading FAQ</a></p></details>
-      </div>
-    </section>
-
-    <section class="section alt" id="sound">
-      <div class="container">
-        <div class="section-head"><p class="eyebrow">Listening + pronunciation</p><h2>聞こえない音を、聞いて・書いて・言える音にする</h2></div>
-        <div class="grid grid-2">
-          <article class="practice-panel"><h3>Dictation</h3><p class="jp">音声だけを聞いて入力します。聞き取れなければSlowで確認。</p><p class="tc">只聽聲音輸入句子，聽不清楚再用 Slow。</p><div class="speed-row"><button id="dictationPlay" class="chip" type="button">▶ Normal</button><button id="dictationSlow" class="chip" type="button">▶ Slow</button><button id="dictationNew" class="chip" type="button">↻ New</button></div><input id="dictationInput" class="text-input" style="margin-top:12px" autocomplete="off" placeholder="Type what you hear"><button id="dictationCheck" class="primary" style="margin-top:10px" type="button">Check</button><p id="dictationFeedback"></p></article>
-          <article class="practice-panel"><h3>Shadowing protocol</h3><ol><li>意味を確認せず1回聞く</li><li>scriptを見て意味と構文を確認</li><li>音声に重ねて3回</li><li>scriptなしで3回</li><li>自分の内容へ1箇所変えて発話</li></ol><blockquote>“The results suggest that the method is effective.”</blockquote><button class="chip" data-speak="The results suggest that the method is effective." type="button">▶ Model voice</button></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="output">
-      <div class="container">
-        <div class="section-head"><p class="eyebrow">Speaking + writing</p><h2>英語で考えを組み立てる</h2></div>
-        <div class="grid grid-3">
-          <article class="card"><h3>30 sec · Foundation</h3><p>Introduce yourself: who you are, what you study/work on, and one thing you enjoy.</p><div class="daily-task">目標: 3〜5文。正確さ優先。</div></article>
-          <article class="card"><h3>90 sec · B2/C1</h3><p>Explain one problem you are solving. Give the background, your approach, one limitation, and the next step.</p><div class="daily-task">目標: because / however / therefore を必要な所だけ使う。</div></article>
-          <article class="card"><h3>200 words · C1/C2</h3><p>Argue whether AI should replace or support human decision-making in a field you know well.</p><div class="daily-task">目標: thesis → reason → evidence/example → counterpoint → conclusion。</div></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section alt" id="c2">
-      <div class="container"><div class="section-head"><p class="eyebrow">C2 direction</p><h2>上級者ほど「難しい単語」より、精度・言い換え・推論・自己修正</h2><p class="jp">CEFRのC2を自動認定するサイトではありません。C2級の運用に必要な方向性を日々の行動に落とします。</p><p class="tc">本站不會自動認證 C2，而是把高階運用需要的能力轉成每天可以訓練的行為。</p></div><div id="c2Grid" class="grid grid-3"></div></div>
-    </section>
-
-    <section class="section" id="sentences">
-      <div class="container"><div class="section-head"><p class="eyebrow">Core sentence bank</p><h2>使える英文をchunkで蓄積する</h2></div><input id="sentenceSearch" class="text-input" type="search" placeholder="Search English / 日本語 / 中文"><div id="sentenceBank" class="grid grid-3" style="margin-top:16px"></div></div>
-    </section>
-
-    <section class="section alt" id="review">
-      <div class="container">
-        <div class="section-head"><p class="eyebrow">Review system</p><h2>間違いを次の教材にする</h2><p class="jp">誤答は「正解」だけでなく、なぜ自分がその選択をしたかまで残します。</p><p class="tc">錯題不只記正解，也記自己為什麼會選錯。</p></div>
-        <div class="grid grid-3">
-          <article class="card"><h3>Mistake Notebook</h3><textarea id="mistakeNotebook" class="notebook" placeholder="× Does he studies English?&#10;○ Does he study English?&#10;Why: does carries the tense, so study returns to the base form."></textarea><p class="micro">Auto-saved locally.</p></article>
-          <article class="card"><h3>Spaced review</h3><div class="timeline-list"><div><strong>Today</strong><span>理由まで確認</span></div><div><strong>Tomorrow</strong><span>ノートを3分</span></div><div><strong>+3 days</strong><span>別の文で再生成</span></div><div><strong>+7 days</strong><span>見ずに話す/書く</span></div></div></article>
-          <article class="card"><h3>Weekly mastery check</h3><div class="review-list"><label><input type="checkbox" data-progress="weekly-1"> Quiz 8/10以上</label><label><input type="checkbox" data-progress="weekly-2"> 2分Speaking</label><label><input type="checkbox" data-progress="weekly-3"> 200-word Writing</label><label><input type="checkbox" data-progress="weekly-4"> 間違い3つを理由付きで説明</label></div><button id="resetProgress" class="text-btn" type="button">進捗をリセット</button></article>
-        </div>
-      </div>
-    </section>
+    <footer class="footer">
+      <p>English Mastery Lab · JP / 繁中 · Grammar-first, output-every-day.</p>
+      <p class="muted">Curriculum references: CEFR, Cambridge English Grammar Profile, Cambridge Grammar Today, British Council LearnEnglish, ETS/IIBC TOEIC.</p>
+    </footer>
   </main>
+</div>
 
-  <footer class="footer"><p>English Mastery Lab — TOEIC 990 benchmark, C2 direction, real-world English. JP / 繁中.</p></footer>
-  <script src="mastery-data.js"></script>
-  <script src="mastery-app.js"></script>
+<nav class="bottom-nav" aria-label="Mobile navigation"><a href="#home">Home</a><a href="#grammar">Grammar</a><a href="#practice">Practice</a><a href="#review">Review</a></nav>
+<script src="mastery-data.js"></script>
+<script src="mastery-app.js"></script>
 </body>
 </html>
