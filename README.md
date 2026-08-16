@@ -1,142 +1,126 @@
-# English Mastery Lab — Complete English + TOEIC 990 benchmark
+# English Mastery Lab — Multi-page English School
 
-英語を「試験で点を取る知識」ではなく、**聞く・読む・話す・書くための運用能力**として身につけるための、JP / 繁中バイリンガル学習アプリです。
+英語を一枚のダッシュボードに詰め込むのではなく、**Grammar / Vocabulary / Pronunciation / Listening / Reading / Speaking / Writing / TOEIC / Review** を独立した教科として学ぶGitHub Pages教材です。
 
-TOEIC L&R 990 は重要なベンチマークの一つですが、最終目的ではありません。A1 から C2 方向まで、Grammar / Vocabulary / Pronunciation / Listening / Reading / Speaking / Writing / Pragmatics を統合して伸ばします。
+## Goal
 
-## Site
-
-GitHub Pages:
-
-```text
-https://syun88.github.io/learn_english/
-```
-
-## Learning philosophy
+TOEIC L&R 990は重要なbenchmarkですが、最終目的は試験ではなく英語運用力です。
 
 ```text
 Accuracy × Automaticity × Appropriacy = Mastery
 ```
 
-文法は次の順番で学びます。
+## Site architecture
 
 ```text
-Quick Check
-→ Form
-→ Meaning / Teacher explanation
-→ Usage
+/
+├─ index.html                 # Home / school map
+├─ grammar/
+│  ├─ index.html             # Grammar Library
+│  ├─ lesson.html            # 独立Lesson Reader (?id=...)
+│  ├─ library.js
+│  └─ lesson.js
+├─ vocabulary/index.html
+├─ pronunciation/index.html
+├─ listening/index.html
+├─ reading/index.html
+├─ speaking/index.html
+├─ writing/index.html
+├─ toeic/index.html
+├─ review/index.html
+├─ assets/
+│  ├─ content.js             # 各教科の教材本文
+│  ├─ site.css
+│  └─ site.js
+├─ mastery-data.js           # Professor Grammar curriculum
+└─ .nojekyll
+```
+
+## Why multi-page
+
+以前はHome、Grammar、Practice、TOEICなどが一枚の長いページにまとまっていました。教材量を本格的に増やすと、1ページ型では「どこを学んでいるか」「どこへ戻るか」「一つのLessonに集中する」が難しくなります。
+
+現在は各技能を別ページ化し、GrammarはさらにLibraryとLesson Readerを分離しています。
+
+## Grammar
+
+既存のProfessor Grammarデータをそのまま利用しつつ、URLを独立させています。
+
+```text
+/grammar/
+/grammar/lesson.html?id=architecture
+/grammar/lesson.html?id=nouns
+...
+```
+
+Lessonは次の順序で読みます。
+
+```text
+Form
+→ Teacher explanation
+→ How to use it
 → Contrast & common mistakes
-→ Real examples + audio
+→ Real examples + TTS
 → Output assignment
-→ Review
+→ Mastery check
 ```
 
-「ルールを読んで終わり」ではなく、理解した文法を自分で使うところまでを1 Lessonとします。
+35 main lessonsは最終的な項目数ではなく「章」です。今後、各章内にsub-lesson・例文・問題を追加します。
 
-## UI / learning flow
+## Other subjects
 
-従来の長い参考書型1ページではなく、学習アプリ型に再設計しています。
+### Vocabulary
+- word family
+- collocation
+- lexical chunks
+- phrasal verbs
+- register / synonyms
+- daily vocabulary protocol
 
-- Home: 今日の次 Lesson、Grammar進捗、Study days、Quiz best
-- Path: A1 → A2 → B1 → B2 → C1 → C2 direction
-- Grammar: 検索・CEFRレベル・文法領域で絞り込み
-- Lesson Reader: 一度に1 Lessonへ集中
-- Coverage: 文法領域と主要トピックの抜けを確認
-- Skills: Grammar以外の7領域も独立して学習
-- Practice: Quiz / Transform / Dictation / Output
-- TOEIC: Part 1–7を精度と速度のベンチマークとして練習
-- Review: 1 / 3 / 7 / 30日復習 + Mistake notebook
+### Pronunciation
+- consonants / vowels
+- minimal pairs
+- stress
+- schwa / weak forms
+- connected speech
+- intonation
 
-進捗、学習日、Quiz best、ノート、Writing draft はブラウザの `localStorage` に保存します。
+### Listening
+- sound recognition
+- chunk processing
+- intent / inference
+- dictation diagnosis
+- advanced input types
 
-## Grammar coverage
+### Reading
+- sentence parsing
+- reference
+- logical relations
+- inference
+- speed training
 
-現在の Professor Grammar は **35 detailed lessons / 9 grammar domains / 90 major topic labels** で構成しています。
+### Speaking
+- accuracy
+- fluency
+- interaction
+- paraphrase
+- register
+- weekly recording
 
-### 9 domains
+### Writing
+- sentence control
+- paragraph structure
+- cohesion
+- email / professional writing
+- academic / technical writing
+- weekly assignment
 
-1. Sentence & Clause Architecture
-2. Noun Phrase System
-3. Tense, Aspect & Modality
-4. Verb Patterns & Voice
-5. Modification & Comparison
-6. Complex Clauses
-7. Interaction Grammar
-8. Discourse & Information
-9. Advanced Written Precision
+### TOEIC
+TOEIC固有テクニックだけでなく、Part 1–7を一般英語の基礎能力へ分解して学習します。
 
-### Topics added after the coverage audit
+### Review
+1 / 3 / 7 / 30日復習とError Logを使います。
 
-初期版の17 Lessonだけでは、英語文法全体の中核を学ぶには不足していました。現在は特に次を独立して追加しています。
+## Storage
 
-- Pronouns & Possession
-- Quantifiers
-- There / It constructions
-- Adjectives & Adverbs
-- Comparison & Degree
-- Future forms
-- `used to / would / be used to / get used to`
-- Modal perfects
-- Phrasal & multi-word verbs
-- Verb complementation
-- Noun / content clauses
-- Adverbial clauses & linkers
-- Reported speech
-- Reporting verbs
-- Question tags / short answers / response grammar
-- Participle / reduced clauses
-- Ellipsis & substitution
-- Punctuation / capitalisation / written grammar
-
-35 Lessonですべての英文法事項を「完全列挙した」とは主張しません。Cambridge English Grammar Profileのような参照体系は非常に細かい文法特徴をCEFR別に記述しています。このサイトでは、それらを1項目1ページで複製するのではなく、**学習・運用上まとまりの良いLessonに統合し、必要に応じてsub-lessonや問題を追加する設計**にしています。
-
-## Complete English domains
-
-- Grammar & Syntax
-- Vocabulary & Collocation
-- Pronunciation & Phonology
-- Listening
-- Reading
-- Speaking
-- Writing
-- Pragmatics & Register
-
-TOEICで扱われにくいSpeaking / Writing / Pronunciation / Registerも同じ重要度で扱います。
-
-## TOEIC 990 benchmark
-
-TOEIC L&RはPart 1–7を練習します。ただし、テスト固有のテクニックを学習の中心には置きません。
-
-まず一般英語として、
-
-- 語彙・collocation
-- 文法・語法
-- connected speech の聞き取り
-- 文章構造・言い換え・推論
-- 高速で正確に処理する自動化
-
-を作り、その結果として990を狙います。
-
-## Files
-
-```text
-index.html        # app shell / page structure
-mastery.css       # responsive application UI
-mastery-data.js   # grammar curriculum and coverage data
-mastery-app.js    # lesson reader, progress, practice and audio logic
-README.md
-```
-
-旧 `styles.css` / `script.js` はmainの旧版互換用として残していますが、Mastery版のページからは読み込みません。
-
-## Curriculum references
-
-設計時の参照軸：
-
-- CEFR / Council of Europe
-- Cambridge English Grammar Profile
-- Cambridge Grammar Today
-- British Council LearnEnglish Grammar
-- ETS / IIBC TOEIC official information
-
-CEFRレベル表示は学習方向を整理するための目安であり、このサイト単独で公式なCEFR認定を行うものではありません。
+Theme、language、Grammar completion、Error Logなどはブラウザの`localStorage`へ保存します。
