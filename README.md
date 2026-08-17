@@ -77,19 +77,15 @@ Chapter 2〜35にも章ごとのTeacher Guideがあります。
 
 ## Teacher references
 
-教材本文は外部教材のコピーではありません。文法分類・用法・例外を検証するTeacher referenceとして、主に以下を参照します。
+教材本文は外部教材のコピーではありません。文法分類・用法・例外を検証するTeacher referenceとして、主に **Cambridge English Grammar Today** と **British Council LearnEnglish Grammar** を参照しています。
 
-- Cambridge English Grammar Today
-  - Complements
-  - Subject complements
-  - Verb patterns
-  - Verb patterns with and without objects
-  - Clauses and sentences
-  - Determiners
-- British Council LearnEnglish
-  - A1–A2 Grammar
-  - B1–B2 Grammar
-  - C1 Grammar
+特に、以下の観点を教材設計へ反映しています。
+
+- complementはsubject/objectとは別の節要素であり、subject complementとobject complementを意味関係で区別する
+- verbは単語の意味だけでなく「後ろに何を取るか」というverb patternとして学ぶ
+- clause/sentenceの中心と追加情報を区別する
+- articles / determiners / quantifiersをcountability・reference・speaker meaningと一緒に扱う
+- A1〜C1のgrammarをlevel別に整理し、説明だけでなく診断とpracticeを行う
 
 Lesson末尾から参照ページへ移動できます。
 
