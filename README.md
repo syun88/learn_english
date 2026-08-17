@@ -14,7 +14,7 @@ Accuracy × Automaticity × Appropriacy = Mastery
 
 Grammarはこの教材の最重要コアです。現在は **35 Chapters / 131+ Sub-lessons** を持ちますが、章名を並べることをcoverageとは考えていません。
 
-各Chapterは最低75分以上の本授業として設計します。
+各Chapterは最低75分以上の本授業として設計します。通常章はTeacher Guide込みで80〜100分以上、Chapter 1のような基礎大章は2時間規模です。
 
 ```text
 Diagnostic
