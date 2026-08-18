@@ -6,6 +6,7 @@
 
   const id = new URLSearchParams(location.search).get('id') || chapters[0].id;
   const chapter = chapters.find(x => x.id === id) || chapters[0];
+  const teacher = (window.grammarTeacherNotes || {})[chapter.id] || null;
   const idx = chapters.indexOf(chapter);
   const prev = chapters[idx - 1];
   const next = chapters[idx + 1];
@@ -22,7 +23,7 @@
 
   const chapterDone = units.filter(u => done.has(`${chapter.id}:${u.id}`)).length;
   const minutes = session.estimateMinutes(chapter);
-  const activities = session.activityCount(chapter);
+  const activities = session.activityCount(chapter) + (teacher?.extraExamples?.length || 0);
   const schedule = session.buildSchedule(chapter);
   const diagnostic = session.buildDiagnostic(chapter);
   const finalTasks = session.buildFinalTasks(chapter);
@@ -38,6 +39,13 @@
         <summary>Why is this form used? / 解説を見る</summary>
         <p class="jp">${esc(ex[1] || '')}</p><p class="tc">${esc(ex[2] || '')}</p>
       </details>
+    </div>`).join('');
+
+  const renderExtraExamples = items => (items || []).map((ex, i) => `
+    <div class="chapter">
+      <div class="formula-row"><span class="badge">Extra ${i + 1}</span><span class="badge">Teacher example bank</span></div>
+      <div class="example-line"><strong>${esc(ex[0])}</strong><button class="speak" data-speak="${esc(ex[0])}" type="button">▶</button></div>
+      <p class="jp">${esc(ex[1] || '')}</p>${ex[2] ? `<p class="tc">${esc(ex[2])}</p>` : ''}
     </div>`).join('');
 
   const renderContrasts = items => (items || []).map((c, i) => `
@@ -69,6 +77,33 @@
       <details><summary>Answer guide / 採点基準</summary>${t.answerEN ? `<div class="right">${esc(t.answerEN)}</div>` : ''}<p class="jp">${esc(t.answerJP || '')}</p><p class="tc">${esc(t.answerTC || '')}</p></details>
     </article>`).join('');
 
+  const renderTeacherCourse = () => {
+    if (!teacher) return '';
+    return `<section class="chapter lesson-section" id="teacher-course">
+      <div class="formula-row"><span class="badge">Professional teacher guide</span><span class="badge">Meaning first</span><span class="badge">Do not rush</span></div>
+      <h2>Teacher's Big Picture — まず「なぜ」を理解する</h2>
+      <div class="practice-box jp"><strong>子どもにも分かる最初のイメージ：</strong><br>${esc(teacher.childJP || '')}</div>
+      ${teacher.childTC ? `<div class="practice-box tc"><strong>先建立直覺：</strong><br>${esc(teacher.childTC)}</div>` : ''}
+
+      <h3>Professional Teacher Explanation</h3>
+      <p class="jp">${esc(teacher.teacherJP || '')}</p>${teacher.teacherTC ? `<p class="tc">${esc(teacher.teacherTC)}</p>` : ''}
+      <div class="practice-box jp"><strong>ここで止まって確認：</strong>上の説明を閉じて、「この文法は何のために存在するのか」を専門用語なしで60秒説明してください。説明できなければ、Sub-lessonへ進まずもう一度読みます。</div>
+
+      <h3>How to Decide — 実際に英文を作るときの判断順</h3>
+      <ol class="jp">${(teacher.decisionJP || []).map((x, i) => `<li><strong>Step ${i + 1}.</strong> ${esc(x)}</li>`).join('')}</ol>
+      ${teacher.decisionTC ? `<ol class="tc">${teacher.decisionTC.map((x, i) => `<li><strong>Step ${i + 1}.</strong> ${esc(x)}</li>`).join('')}</ol>` : ''}
+
+      <h3>Teacher Warnings — ここで学習者がよく混乱する</h3>
+      <ul class="jp">${(teacher.warningsJP || []).map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+      ${teacher.warningsTC ? `<ul class="tc">${teacher.warningsTC.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
+
+      <h3>Additional Example Bank — 量を見てパターンを身体に入れる</h3>
+      <p class="jp">1〜2例だけでルールを覚えないでください。例文ごとに「なぜこの形か」を自分で答えてから解説を読み、最後に英文だけを見て3回音読します。</p>
+      ${renderExtraExamples(teacher.extraExamples)}
+      <div class="practice-box jp"><strong>Example Bank Drill：</strong>上の例文から5文を選び、①主語を変える ②時制を変える ③自分の内容へ変える、の3回ずつ書き換えてください。最低15文の追加練習になります。</div>
+    </section>`;
+  };
+
   root.innerHTML = `
     <header class="lesson-head">
       <div class="formula-row">
@@ -80,13 +115,13 @@
       </div>
       <h1>${esc(chapter.title)}</h1><p class="tc">${esc(chapter.titleTc || '')}</p>
       <p class="lead jp">${esc(chapter.overviewJP || '')}</p><p class="lead tc">${esc(chapter.overviewTC || '')}</p>
-      <div class="practice-box"><strong>Chapter progress: ${chapterDone} / ${units.length}</strong><br><span class="jp">この章は「読むだけ」ではなく、最低${minutes}分の授業として設計されています。</span><span class="tc">本章不是只閱讀，而是設計成至少${minutes}分鐘的完整課程。</span></div>
+      <div class="practice-box"><strong>Chapter progress: ${chapterDone} / ${units.length}</strong><br><span class="jp">この章は「読むだけ」ではなく、最低${minutes}分の授業として設計されています。詳しいTeacher Guideと例文バンクも学習時間に含め、理解できるまで進めません。</span><span class="tc">本章不是只閱讀，而是至少${minutes}分鐘的完整課程；Teacher Guide 與例句庫也屬於正式學習內容。</span></div>
     </header>
 
     <section class="chapter lesson-section">
       <h2>How to study this chapter · ${minutes}+ minutes</h2>
-      <p class="jp">時間は目安です。答えをすぐ開かず、必ず自分で考えてから確認してください。理解が浅い場合は90分を超えて構いません。</p>
-      <p class="tc">時間僅供參考。不要立刻打開答案，先自己思考再核對；理解較慢時超過90分鐘也沒有問題。</p>
+      <p class="jp">時間は目安です。答えをすぐ開かず、必ず自分で考えてから確認してください。理解が浅い場合は90分・120分を超えても構いません。「1時間で終える」ことより「1時間以上使って理解する」ことを優先します。</p>
+      <p class="tc">時間僅供參考。不要立刻看答案；理解較慢時超過90或120分鐘也沒有問題，重點是理解而不是趕著一小時結束。</p>
       ${schedule.map(s => `<div class="chapter"><div class="formula-row"><span class="badge">${esc(s.range)}</span><strong>${esc(s.title)}</strong></div><p class="jp">${esc(s.jp)}</p><p class="tc">${esc(s.tc)}</p></div>`).join('')}
     </section>
 
@@ -106,9 +141,11 @@
       ${renderDiagnostic(diagnostic)}
     </section>
 
+    ${renderTeacherCourse()}
+
     <section class="chapter lesson-section">
       <h2>Chapter Map</h2>
-      <ol>${units.map((u, i) => `<li><a href="#unit-${esc(u.id)}">${String(i + 1).padStart(2, '0')} · ${esc(u.title)}</a> <span class="badge">${esc(u.level || '')}</span> <span class="badge">~14 min</span> ${done.has(`${chapter.id}:${u.id}`) ? '<span class="badge">✓ done</span>' : ''}</li>`).join('')}</ol>
+      <ol>${units.map((u, i) => `<li><a href="#unit-${esc(u.id)}">${String(i + 1).padStart(2, '0')} · ${esc(u.title)}</a> <span class="badge">${esc(u.level || '')}</span> <span class="badge">~14–18 min+</span> ${done.has(`${chapter.id}:${u.id}`) ? '<span class="badge">✓ done</span>' : ''}</li>`).join('')}</ol>
     </section>
 
     ${units.map((u, i) => {
@@ -116,7 +153,7 @@
       const activityPlan = session.buildUnitActivities(chapter, u);
       const noteKey = `${chapter.id}:${u.id}:teachback`;
       return `<article class="chapter lesson-section" id="unit-${esc(u.id)}">
-        <div class="formula-row"><span class="badge">Sub-lesson ${i + 1}/${units.length}</span><span class="badge">${esc(u.level || '')}</span><span class="badge">~14–18 min</span></div>
+        <div class="formula-row"><span class="badge">Sub-lesson ${i + 1}/${units.length}</span><span class="badge">${esc(u.level || '')}</span><span class="badge">~14–18 min+</span></div>
         <h2>${esc(u.title)}</h2>
 
         <div class="chapter">
@@ -126,8 +163,8 @@
 
         <h3>1 · Teacher Explanation</h3>
         <p class="jp">${esc(u.explainJP || '')}</p><p class="tc">${esc(u.explainTC || '')}</p>
-        <div class="practice-box jp"><strong>Teach-back：</strong>この説明を閉じて「この文法は何を表すのか」を30〜60秒で自分の言葉で説明してください。</div>
-        <div class="practice-box tc"><strong>Teach-back：</strong>關閉說明後，用30–60秒自己的話解釋這個文法表達什麼。</div>
+        <div class="practice-box jp"><strong>Teach-back：</strong>この説明を閉じて「この文法は何を表すのか」を30〜60秒で自分の言葉で説明してください。記号や公式だけでなく、意味まで言えなければ再読します。</div>
+        <div class="practice-box tc"><strong>Teach-back：</strong>關閉說明後，用30–60秒自己的話說明這個文法「表達什麼意思」，不能只背公式。</div>
 
         <h3>2 · Rule Recall & Decision Points</h3>
         <p class="jp">Rulesを開く前に、自分で判断基準を書いてください。</p><p class="tc">打開 Rules 前，先自己寫出判斷標準。</p>
@@ -135,11 +172,11 @@
         <details><summary>Open Rules & Decision Points</summary><div class="jp"><ul>${(u.rulesJP || []).map(x => `<li>${esc(x)}</li>`).join('')}</ul></div><div class="tc"><ul>${(u.rulesTC || []).map(x => `<li>${esc(x)}</li>`).join('')}</ul></div></details>
 
         <h3>3 · Guided Example Lab</h3>
-        <p class="jp">解説を開く前に、各文について「骨格」「意味」「この形を選ぶ理由」「別の形にしたら何が変わるか」を考えてください。</p>
-        <p class="tc">打開解說前，先分析每句的「結構」「意義」「為何選此形式」「改成另一形式會如何改變」。</p>
+        <p class="jp">解説を開く前に、各文について「誰/何について」「何を言っている」「この形を選ぶ理由」「別の形にしたら何が変わるか」を考えてください。S/V/O/Cなどの記号は必要なときだけ後から確認します。</p>
+        <p class="tc">打開解說前，先分析「在說誰/什麼」「說了什麼」「為何選此形式」「換另一形式有何改變」。S/V/O/C 等符號最後需要時再確認。</p>
         ${renderExamples(u.examples)}
-        <div class="practice-box jp">例文を3回ずつ音読：①ゆっくり構造を意識 ②自然な速度 ③文を見ずに再現。</div>
-        <div class="practice-box tc">每個例句朗讀3次：①慢速注意結構 ②自然速度 ③不看句子重現。</div>
+        <div class="practice-box jp">例文を3回ずつ音読：①ゆっくり意味と構造を意識 ②自然な速度 ③文を見ずに再現。さらに1文を自分の内容へ書き換える。</div>
+        <div class="practice-box tc">每個例句朗讀3次：①慢速理解意思/結構 ②自然速度 ③不看文字重現，並改寫一個自己的例句。</div>
 
         <h3>4 · Error Clinic & Contrast</h3>
         ${renderContrasts(u.contrasts)}
@@ -147,13 +184,13 @@
         <div class="practice-box tc">不只改錯，還要用一句話說明正確句與錯句在「意義/結構」上的差異。</div>
 
         <h3>5 · Controlled Practice</h3>
-        <ol class="jp"><li>Rulesから2つ選び、それぞれ例文を2文ずつ作る。</li><li>上の正しい例文を、主語・時制・目的語などを変えて3パターンに展開する。</li><li>典型ミスと同じ種類の「自作誤文」を1つ作り、自分で訂正する。</li><li>この文法を使うべき場面／使わない方がよい場面を1つずつ説明する。</li></ol>
-        <ol class="tc"><li>從 Rules 選2項，各造2句。</li><li>把上方正確例句改主詞、時態、受詞等，擴展成3種。</li><li>自己製作1個同類錯句，再自行修正。</li><li>各說明1個適合使用／不適合使用此文法的情境。</li></ol>
+        <ol class="jp"><li>Rulesから2つ選び、それぞれ例文を2文ずつ作る。</li><li>上の正しい例文を、主語・時制・対象などを変えて3パターンに展開する。</li><li>典型ミスと同じ種類の「自作誤文」を1つ作り、自分で訂正する。</li><li>この文法を使うべき場面／使わない方がよい場面を1つずつ説明する。</li><li>小学生に説明するつもりで、専門用語なしの説明を1〜2文書く。</li></ol>
+        <ol class="tc"><li>從 Rules 選2項，各造2句。</li><li>把正確例句改主詞、時態、對象等，擴展成3種。</li><li>自己製作1個同類錯句，再自行修正。</li><li>各說明1個適合/不適合使用的情境。</li><li>假設教小學生，不用術語寫1–2句解釋。</li></ol>
 
         <h3>6 · Active Drill & Free Production</h3>
         <div class="practice-box jp">${esc(u.drillJP || '')}</div><div class="practice-box tc">${esc(u.drillTC || '')}</div>
-        <div class="practice-box jp"><strong>追加Output：</strong>自分の生活・大学・仕事・技術・趣味など、実際の内容で最低3文作る。最後に、その3文を見ずに口頭で言う。</div>
-        <div class="practice-box tc"><strong>追加Output：</strong>用自己的生活、學校、工作、技術或興趣至少造3句，最後不看文字口頭說出。</div>
+        <div class="practice-box jp"><strong>追加Output：</strong>自分の生活・大学・仕事・技術・趣味など、実際の内容で最低3文作る。最後に、その3文を見ずに口頭で言い、「なぜこの形を選んだか」も説明する。</div>
+        <div class="practice-box tc"><strong>追加Output：</strong>用自己的生活、學校、工作、技術或興趣至少造3句，最後不看文字說出，並解釋為何選這個形式。</div>
 
         <div class="lesson-actions"><button class="complete-btn ${done.has(unitKey) ? 'done' : ''}" data-unit-complete="${esc(unitKey)}" type="button">${done.has(unitKey) ? '✓ Sub-lesson completed' : 'Mark sub-lesson complete'}</button><a class="secondary" href="#top">↑ Chapter top</a></div>
       </article>`;
@@ -176,8 +213,8 @@
 
     <section class="chapter lesson-section">
       <h2>Mastery Standard & Spaced Review</h2>
-      <ul class="jp"><li><strong>Today:</strong> 全Sub-lessonとFinal Testを行う。</li><li><strong>Tomorrow:</strong> Rulesを見ずに章の内容を5分で説明し、誤文訂正だけ再実施。</li><li><strong>+3 days:</strong> Final Testから5問を再挑戦し、自分の例文を5文作る。</li><li><strong>+7 days:</strong> Chapter Output Projectを別テーマで再作成する。</li><li><strong>Mastered:</strong> 80%以上正しく判断でき、理由を説明し、会話/Writingで自然に使える。</li></ul>
-      <ul class="tc"><li><strong>今天：</strong> 完成所有 Sub-lesson 與 Final Test。</li><li><strong>明天：</strong> 不看 Rules 用5分鐘解釋全章，再做改錯。</li><li><strong>+3天：</strong> Final Test 隨選5題重做，另造5句。</li><li><strong>+7天：</strong> 換主題重做 Chapter Output Project。</li><li><strong>Mastered：</strong> 80%以上能正確判斷、說明理由，並能在口說/寫作自然使用。</li></ul>
+      <ul class="jp"><li><strong>Today:</strong> Teacher Guide・全Sub-lesson・Final Testを行う。</li><li><strong>Tomorrow:</strong> 教材を見ずに章の内容を5分で説明し、誤文訂正だけ再実施。</li><li><strong>+3 days:</strong> Final Testから5問を再挑戦し、自分の例文を5文作る。</li><li><strong>+7 days:</strong> Chapter Output Projectを別テーマで再作成する。</li><li><strong>Mastered:</strong> 80%以上正しく判断でき、理由と意味差を説明し、会話/Writingで自然に使える。</li></ul>
+      <ul class="tc"><li><strong>今天：</strong> 完成 Teacher Guide、所有 Sub-lesson 與 Final Test。</li><li><strong>明天：</strong> 不看教材用5分鐘解釋全章，再做改錯。</li><li><strong>+3天：</strong> Final Test 隨選5題重做，另造5句。</li><li><strong>+7天：</strong> 換主題重做 Chapter Output Project。</li><li><strong>Mastered：</strong> 80%以上能正確判斷、解釋理由/意義差，並能在口說/寫作自然使用。</li></ul>
     </section>
 
     <div class="lesson-actions">${prev ? `<a class="secondary" href="?id=${encodeURIComponent(prev.id)}">← ${esc(prev.title)}</a>` : ''}<a class="secondary" href="/learn_english/grammar/">Grammar Library</a>${next ? `<a class="secondary" href="?id=${encodeURIComponent(next.id)}">${esc(next.title)} →</a>` : ''}</div>`;

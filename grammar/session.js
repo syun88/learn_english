@@ -1,18 +1,34 @@
 (() => {
   const MIN_UNIT_MINUTES = 14;
   const DIAGNOSTIC_MINUTES = 8;
+  const TEACHER_GUIDE_MINUTES = 18;
   const FINAL_MINUTES = 15;
 
   const unitsOf = chapter => chapter?.units || [];
+  const teacherOf = chapter => (window.grammarTeacherNotes || {})[chapter?.id] || null;
+
+  function teacherMinutes(chapter) {
+    const teacher = teacherOf(chapter);
+    if (!teacher) return 0;
+    const examples = (teacher.extraExamples || []).length;
+    return TEACHER_GUIDE_MINUTES + Math.min(8, Math.floor(examples / 4));
+  }
 
   function estimateMinutes(chapter) {
-    const calculated = DIAGNOSTIC_MINUTES + unitsOf(chapter).length * MIN_UNIT_MINUTES + FINAL_MINUTES;
-    return Math.max(65, calculated);
+    const calculated = DIAGNOSTIC_MINUTES + teacherMinutes(chapter) + unitsOf(chapter).length * MIN_UNIT_MINUTES + FINAL_MINUTES;
+    return Math.max(75, calculated);
   }
 
   function activityCount(chapter) {
     const units = unitsOf(chapter);
+    const teacher = teacherOf(chapter);
     let total = 4; // orientation + diagnostic + final test + output project
+    if (teacher) {
+      total += 4; // intuition + professional explanation + decision flow + warnings
+      total += (teacher.extraExamples || []).length;
+      total += (teacher.decisionJP || []).length;
+      total += (teacher.warningsJP || []).length;
+    }
     units.forEach(unit => {
       total += 5; // concept, retrieval, example lab, error clinic, production
       total += (unit.examples || []).length;
@@ -25,27 +41,39 @@
 
   function buildSchedule(chapter) {
     const units = unitsOf(chapter);
+    const guide = teacherMinutes(chapter);
+    const guideEnd = DIAGNOSTIC_MINUTES + guide;
     const unitBlock = units.length * MIN_UNIT_MINUTES;
-    const afterUnits = DIAGNOSTIC_MINUTES + unitBlock;
+    const afterUnits = guideEnd + unitBlock;
     const total = estimateMinutes(chapter);
-    return [
+    const steps = [
       {
         range: `0–${DIAGNOSTIC_MINUTES} min`,
         title: 'Diagnostic & prediction',
         jp: 'まだ説明を読まず、誤文訂正・意味判断・例文分析を行い、何が分からないかを先に見つけます。',
         tc: '先不要看講義，透過改錯、意義判斷與例句分析找出自己的盲點。'
-      },
+      }
+    ];
+    if (guide) {
+      steps.push({
+        range: `${DIAGNOSTIC_MINUTES}–${guideEnd} min`,
+        title: 'Professional Teacher Guide & example bank',
+        jp: '子ども向けの直感から入り、専門的な詳説、判断フロー、典型誤解、追加例文を読みます。例文は「なぜこの形か」を説明してから音読・書き換えを行います。',
+        tc: '先建立孩子也能懂的直覺，再學專業解說、判斷流程、常見誤解與追加例句；每句先說明為何用此形式，再朗讀與改寫。'
+      });
+    }
+    steps.push(
       {
-        range: `${DIAGNOSTIC_MINUTES}–${afterUnits} min`,
+        range: `${guideEnd}–${afterUnits} min`,
         title: `${units.length} guided sub-lessons`,
-        jp: '各Sub-lessonを「概念→想起→例文→誤用→生成」の順で約14分ずつ学びます。',
-        tc: '每個 Sub-lesson 約14分鐘，依「概念→回想→例句→錯誤→產出」學習。'
+        jp: '各Sub-lessonを「概念→想起→例文→誤用→生成」の順で最低14分ずつ学びます。分からなければ時間を延長します。',
+        tc: '每個 Sub-lesson 至少14分鐘，依「概念→回想→例句→錯誤→產出」學習；不懂就延長時間。'
       },
       {
         range: `${afterUnits}–${total} min`,
         title: 'Mastery test & output',
-        jp: '答えを見ずに章全体を横断する問題を解き、最後に自分の英文を作って説明できるか確認します。',
-        tc: '不看答案完成跨章測驗，最後用自己的英文輸出並確認能否解釋。'
+        jp: '答えを見ずに章全体を横断する問題を解き、最後に自分の英文を作って「なぜ」を説明できるか確認します。',
+        tc: '不看答案完成跨章測驗，最後用自己的英文輸出並確認能否說明「為什麼」。'
       },
       {
         range: '翌日 / 3日後 / 7日後',
@@ -53,12 +81,13 @@
         jp: '同じDrillを短時間で再実行し、正答だけでなく「なぜ」を言えるか確認します。',
         tc: '隔天、3天、7天重新快速做 Drill，確認不只答對，還能說明原因。'
       }
-    ];
+    );
+    return steps;
   }
 
   function buildDiagnostic(chapter) {
     const tasks = [];
-    unitsOf(chapter).forEach((unit, index) => {
+    unitsOf(chapter).forEach(unit => {
       const contrast = (unit.contrasts || [])[0];
       if (contrast) {
         tasks.push({
@@ -109,8 +138,8 @@
       {
         title: '3 · Example lab',
         minutes: 3,
-        jp: `${exampleCount}個の例文を、①骨格/形 ②意味 ③なぜ別の形ではないか、の3点で分析し、最後に音読します。`,
-        tc: `分析${exampleCount}個例句：①結構 ②意義 ③為何不用另一形式，最後朗讀。`
+        jp: `${exampleCount}個の例文を、①意味 ②形 ③なぜ別の形ではないか、の3点で分析し、最後に音読します。`,
+        tc: `分析${exampleCount}個例句：①意義 ②結構 ③為何不用另一形式，最後朗讀。`
       },
       {
         title: '4 · Error clinic',
@@ -121,8 +150,8 @@
       {
         title: '5 · Controlled → free production',
         minutes: 3,
-        jp: '指定Drillを行った後、同じ文法を使って自分の生活・学習・仕事について最低3文作ります。最後に60秒でルールを口頭説明します。',
-        tc: '完成指定 Drill 後，用同一文法寫至少3句自己的生活/學習/工作內容，最後用60秒口頭解釋規則。'
+        jp: '指定Drillを行った後、同じ文法を使って自分の生活・学習・仕事について最低3文作ります。最後に60秒で意味と判断基準を口頭説明します。',
+        tc: '完成指定 Drill 後，用同一文法寫至少3句自己的生活/學習/工作內容，最後用60秒口頭解釋意義與判斷標準。'
       }
     ];
   }
@@ -145,8 +174,8 @@
       if (example) {
         tasks.push({
           type: 'Grammar reasoning',
-          promptJP: `“${example[0]}” の文法選択を説明し、同じパターンで別の文を1文作る。`,
-          promptTC: `說明 “${example[0]}” 的文法選擇，並用同一模式另造一句。`,
+          promptJP: `“${example[0]}” の文法選択を意味から説明し、同じパターンで別の文を1文作る。`,
+          promptTC: `從意義說明 “${example[0]}” 的文法選擇，並用同一模式另造一句。`,
           answerEN: example[0],
           answerJP: example[1] || '',
           answerTC: example[2] || ''
@@ -167,11 +196,11 @@
     (chapter.outcomesJP || []).forEach((outcome, i) => {
       tasks.push({
         type: 'Production',
-        promptJP: `到達目標「${outcome}」を証明する英文を2〜3文作り、自分で解説する。`,
-        promptTC: `為了證明達成目標「${(chapter.outcomesTC || [])[i] || outcome}」，造2–3句英文並自行解釋。`,
+        promptJP: `到達目標「${outcome}」を証明する英文を2〜3文作り、「なぜその形を選んだか」を自分で解説する。`,
+        promptTC: `為了證明達成目標「${(chapter.outcomesTC || [])[i] || outcome}」，造2–3句英文並說明為何選此形式。`,
         answerEN: '',
-        answerJP: '自由解答。文法的正確さだけでなく、なぜその形を選んだか説明できることが合格条件です。',
-        answerTC: '自由作答。合格條件不只正確，還要能解釋為何選這個形式。'
+        answerJP: '自由解答。文法的正確さだけでなく、意味と選択理由を説明できることが合格条件です。',
+        answerTC: '自由作答。合格條件不只正確，還要能解釋意義與選擇理由。'
       });
     });
     return tasks.slice(0, 14);
@@ -181,8 +210,8 @@
     const units = unitsOf(chapter);
     const required = Math.min(6, Math.max(3, units.length));
     return {
-      jp: `この章から異なるSub-lessonを最低${required}個選び、それぞれの文法を1回以上使って120〜180語の文章を書いてください。次に、その文章を音読し、使った文法を5分以内で「先生役」として説明します。最後に、書いた英文から自分で誤り候補を3か所探して再確認します。`,
-      tc: `從本章至少選${required}個不同的 Sub-lesson，每個文法至少使用一次，寫120–180字英文。接著朗讀全文，並在5分鐘內以「老師」身分解釋所用文法。最後自行找出3個可能錯誤處重新檢查。`
+      jp: `この章から異なるSub-lessonを最低${required}個選び、それぞれの文法を1回以上使って120〜180語の文章を書いてください。次に、その文章を音読し、使った文法を5分以内で「先生役」として専門用語なしでも説明します。最後に、書いた英文から自分で誤り候補を3か所探して再確認します。`,
+      tc: `從本章至少選${required}個不同的 Sub-lesson，每個文法至少使用一次，寫120–180字英文。接著朗讀全文，並在5分鐘內以「老師」身分、不依賴術語解釋所用文法。最後自行找出3個可能錯誤處重新檢查。`
     };
   }
 
